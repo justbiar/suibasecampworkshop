@@ -10,9 +10,9 @@
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var small = window.matchMedia && window.matchMedia("(max-width: 720px)").matches;
 
-  var BLUE = new THREE.Color("#3a2a7a");
-  var CYAN = new THREE.Color("#836ef9");
-  var WHITE = new THREE.Color("#f7c8ec");
+  var BLUE = new THREE.Color("#1e3a5f");
+  var CYAN = new THREE.Color("#4da2ff");
+  var WHITE = new THREE.Color("#dff1ff");
 
   var renderer;
   try {
