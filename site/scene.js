@@ -10,9 +10,9 @@
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var small = window.matchMedia && window.matchMedia("(max-width: 720px)").matches;
 
-  var BLUE = new THREE.Color("#1e3a5f");
-  var CYAN = new THREE.Color("#4da2ff");
-  var WHITE = new THREE.Color("#f2f5f8");
+  var BLUE = new THREE.Color("#3a2a7a");
+  var CYAN = new THREE.Color("#836ef9");
+  var WHITE = new THREE.Color("#f7c8ec");
 
   var renderer;
   try {
@@ -21,7 +21,7 @@
   renderer.setClearColor(0x000000, 0);
 
   var scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x0b0d10, 0.09);
+  scene.fog = new THREE.FogExp2(0x05060a, 0.09);
 
   var camera = new THREE.PerspectiveCamera(46, 1, 0.1, 100);
   camera.position.set(0, 0.4, 7.2);
