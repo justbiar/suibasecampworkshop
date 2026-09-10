@@ -215,7 +215,11 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.03em; line-height: 1.08; margi
 }
 .pullquote cite { display: block; margin-top: 22px; font: 500 12px/1 var(--mono); text-transform: uppercase; color: var(--ink-3); letter-spacing: var(--label-ls); }
 
-/* diagram */
+/* three.js visualisations */
+.viz { width: 100%; height: min(48vh, 400px); display: block; margin: 6px 0 0; }
+.viz-cap { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: var(--label-ls); color: var(--ink-3); text-align: center; margin: 12px 0 0; }
+
+/* diagram (legacy, unused) */
 .diagram { border: 1px solid var(--line); background: var(--bg-2); border-radius: 18px; padding: 34px; margin-top: 6px; }
 .diagram svg { width: 100%; height: auto; display: block; }
 .diagram .lbl { fill: var(--ink-2); font: 500 13px var(--sans); }

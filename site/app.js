@@ -42,8 +42,10 @@
     slides.forEach(function (s, k) {
       var hidden = k !== index;
       s.setAttribute("aria-hidden", String(hidden));
+      s.toggleAttribute("data-active", k === index);
       if (supportsInert) s.inert = hidden;
     });
+    window.dispatchEvent(new CustomEvent("deck:change", { detail: { index: index } }));
 
     try { history.replaceState(null, "", "#" + (index + 1)); } catch (e) {}
   }

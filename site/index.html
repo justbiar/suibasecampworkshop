@@ -125,12 +125,7 @@
     <section class="slide" aria-label="Four layers, one evolution">
       <div class="slide-inner">
         <h2 data-i18n="evo.fourhead">Four layers, one evolution.</h2>
-        <div class="ladder" aria-hidden="true">
-          <div class="rung"><span>03</span> Vibe-coding</div>
-          <div class="rung"><span>02</span> High-level</div>
-          <div class="rung"><span>01</span> Low-level</div>
-          <div class="rung"><span>00</span> Binary</div>
-        </div>
+        <canvas id="viz-layers" class="viz" aria-label="A 3D stack of the four layers, binary at the base"></canvas>
         <p class="sub" data-i18n="evo.closing">Each layer hides the one below it. Vibe-coding doesn't replace the others — it sits on top of them, the way Python sits on top of C, and C sits on top of binary.</p>
       </div>
     </section>
@@ -158,20 +153,8 @@
     <section class="slide" aria-label="What is an agent">
       <div class="slide-inner">
         <h2 data-i18n="agent.whathead">What is an agent?</h2>
-        <div class="diagram" aria-hidden="true">
-          <svg viewBox="0 0 720 150" role="img">
-            <line class="stroke stroke-accent dash" x1="150" y1="75" x2="270" y2="75" />
-            <line class="stroke stroke-accent dash" x1="390" y1="75" x2="510" y2="75" />
-            <path class="stroke stroke-accent dash" d="M600 95 C600 140, 120 140, 120 98" fill="none" />
-            <circle cx="90" cy="75" r="42" fill="none" class="stroke" />
-            <circle cx="360" cy="75" r="42" fill="none" class="stroke" />
-            <circle cx="630" cy="75" r="42" fill="none" class="stroke" />
-            <text x="90" y="80" text-anchor="middle" class="lbl-strong" data-i18n="loop.observe">observe</text>
-            <text x="360" y="80" text-anchor="middle" class="lbl-strong" data-i18n="loop.think">think</text>
-            <text x="630" y="80" text-anchor="middle" class="lbl-strong" data-i18n="loop.act">act</text>
-            <text x="360" y="135" text-anchor="middle" class="lbl" data-i18n="loop.caption">…then observe again</text>
-          </svg>
-        </div>
+        <canvas id="viz-loop" class="viz" aria-label="A 3D loop cycling through observe, think, act"></canvas>
+        <p class="viz-cap" data-i18n="loop.caption">…then observe again</p>
       </div>
     </section>
 
@@ -344,6 +327,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="i18n.js"></script>
 <script src="scene.js"></script>
+<script src="viz.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
