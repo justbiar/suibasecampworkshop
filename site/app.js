@@ -12,6 +12,7 @@
   var progress = document.getElementById("progress");
   var prevBtn = document.getElementById("prev");
   var nextBtn = document.getElementById("next");
+  var qrOverlay = document.getElementById("qrOverlay");
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var index = 0;
@@ -76,6 +77,8 @@
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     var t = e.target;
     if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA")) return;
+    if (e.key === "Escape") { if (!qrOverlay.hidden) { qrOverlay.hidden = true; e.preventDefault(); } return; }
+    if (e.key === "q" || e.key === "Q") { qrOverlay.hidden = !qrOverlay.hidden; e.preventDefault(); return; }
     switch (e.key) {
       case "ArrowRight": case "PageDown": next(); e.preventDefault(); break;
       case "ArrowLeft": case "PageUp": prev(); e.preventDefault(); break;
@@ -152,6 +155,23 @@
       });
     } catch (e) { qrEl.textContent = ""; }
   }
+
+  /* QR overlay — reachable from every slide via the QR button or the Q key */
+  var qrBigUrlEl = document.getElementById("qrBigUrl");
+  if (qrBigUrlEl) qrBigUrlEl.textContent = url.replace(/^https?:\/\//, "");
+  var qrBig = document.getElementById("qrBig");
+  if (qrBig && typeof window.QRCode === "function") {
+    try {
+      new window.QRCode(qrBig, {
+        text: url, width: 264, height: 264,
+        colorDark: "#0b0d10", colorLight: "#ffffff",
+        correctLevel: window.QRCode.CorrectLevel ? window.QRCode.CorrectLevel.M : 0
+      });
+    } catch (e) {}
+  }
+  document.getElementById("qrBtn").addEventListener("click", function () { qrOverlay.hidden = false; });
+  document.getElementById("qrClose").addEventListener("click", function () { qrOverlay.hidden = true; });
+  qrOverlay.addEventListener("click", function (e) { if (e.target === qrOverlay) qrOverlay.hidden = true; });
 
   /* deep link + init */
   function fromHash() {

@@ -21,6 +21,7 @@
 <div class="topbar">
   <button class="brand" id="brandHome" type="button"><span class="dot"></span>binary&nbsp;&rarr;&nbsp;agents</button>
   <div class="topbar-right">
+    <button class="chip-btn" id="qrBtn" type="button" aria-haspopup="dialog" title="Show QR (Q)">QR</button>
     <a class="pdf-link" href="Suibasecamp-Workshop.pdf" target="_blank" rel="noopener" title="Slides (PDF)" data-i18n="nav.slides">Slides</a>
     <div class="langs" role="group" aria-label="Language">
       <button type="button" data-lang="en" aria-pressed="true">EN</button>
@@ -309,6 +310,15 @@
 
   </div>
 </main>
+
+<div class="qr-overlay" id="qrOverlay" role="dialog" aria-modal="true" aria-label="QR code for this deck" hidden>
+  <div class="qr-overlay-card">
+    <div id="qrBig" aria-hidden="true"></div>
+    <p class="qr-cap" data-i18n="qr.head">Take it with you.</p>
+    <p class="qr-url" id="qrBigUrl"></p>
+    <button class="qr-close" id="qrClose" type="button">Esc</button>
+  </div>
+</div>
 
 <div class="controls">
   <div class="progress"><span id="progress"></span></div>
