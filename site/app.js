@@ -169,6 +169,16 @@
       });
     } catch (e) {}
   }
+  var qrHero = document.getElementById("qrHero");
+  if (qrHero && typeof window.QRCode === "function") {
+    try {
+      new window.QRCode(qrHero, {
+        text: url, width: 78, height: 78,
+        colorDark: "#0b0d10", colorLight: "#ffffff",
+        correctLevel: window.QRCode.CorrectLevel ? window.QRCode.CorrectLevel.M : 0
+      });
+    } catch (e) {}
+  }
   document.getElementById("qrBtn").addEventListener("click", function () { qrOverlay.hidden = false; });
   document.getElementById("qrClose").addEventListener("click", function () { qrOverlay.hidden = true; });
   qrOverlay.addEventListener("click", function (e) { if (e.target === qrOverlay) qrOverlay.hidden = true; });
