@@ -14,6 +14,7 @@
   var css = getComputedStyle(document.documentElement);
   var cvar = function (name, fb) { return (css.getPropertyValue(name) || fb).trim() || fb; };
   var ACCENT = new THREE.Color(cvar("--accent", "#4da2ff"));
+  var ACC2 = new THREE.Color(cvar("--accent-2", "#6ee7c7"));
   var INK = new THREE.Color(cvar("--ink", "#fbfaf9"));
   var LINE = new THREE.Color(cvar("--line-2", "#34353f"));
 
@@ -188,6 +189,151 @@
       pulse.position.set(Math.cos(-Math.PI / 2 + a) * R, Math.sin(-Math.PI / 2 + a) * R, 0);
       var b = a - 0.3;
       trail.position.set(Math.cos(-Math.PI / 2 + b) * R, Math.sin(-Math.PI / 2 + b) * R, 0);
+    };
+  });
+
+  /* ---- scene: BINARY — a lattice of bits, flickering on and off ---- */
+  mount("viz-binary", function (scene, camera) {
+    camera.position.set(0, 0, 7);
+    var g = new THREE.Group();
+    g.rotation.set(-0.5, 0.5, 0);
+    scene.add(g);
+    var S = 7, gap = 0.62, cubes = [], geoC = new THREE.BoxGeometry(0.34, 0.34, 0.34);
+    for (var a = 0; a < S; a++) for (var b = 0; b < S; b++) {
+      var m = new THREE.Mesh(geoC, new THREE.MeshBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.12 }));
+      m.position.set((a - S / 2 + 0.5) * gap, (b - S / 2 + 0.5) * gap, 0);
+      var e = new THREE.LineSegments(new THREE.EdgesGeometry(geoC),
+        new THREE.LineBasicMaterial({ color: LINE, transparent: true, opacity: 0.5 }));
+      e.position.copy(m.position);
+      g.add(m, e);
+      cubes.push(m);
+    }
+    var acc = 0;
+    function shuffle() {
+      for (var i = 0; i < cubes.length; i++) {
+        var on = Math.random() > 0.62;
+        cubes[i].material.color.copy(on ? ACCENT : ACCENT);
+        cubes[i].material.opacity = on ? 0.85 : 0.08;
+        cubes[i].scale.setScalar(on ? 1 : 0.7);
+      }
+    }
+    shuffle();
+    return function (dt, t) {
+      g.rotation.y = 0.5 + Math.sin(t * 0.0002) * 0.35;
+      acc += dt;
+      if (acc > 0.28) { acc = 0; shuffle(); }
+    };
+  });
+
+  /* ---- scene: LOW-LEVEL — a stack you place by hand, one block always loose ---- */
+  mount("viz-lowlevel", function (scene, camera) {
+    camera.position.set(0, 0.4, 7);
+    var g = new THREE.Group();
+    g.rotation.set(-0.32, 0.7, 0);
+    scene.add(g);
+    var NB = 6, blocks = [], geoB = new THREE.BoxGeometry(1.8, 0.62, 1.2);
+    for (var i = 0; i < NB; i++) {
+      var y = (i - (NB - 1) / 2) * 0.74;
+      var fill = new THREE.Mesh(geoB, new THREE.MeshBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.05 }));
+      var edge = new THREE.LineSegments(new THREE.EdgesGeometry(geoB),
+        new THREE.LineBasicMaterial({ color: i === NB - 1 ? ACCENT : LINE, transparent: true, opacity: 0.55 }));
+      fill.position.y = y; edge.position.y = y;
+      g.add(fill, edge);
+      blocks.push({ fill: fill, edge: edge, y: y });
+    }
+    var loose = blocks[NB - 1];
+    return function (dt, t) {
+      g.rotation.y = 0.7 + Math.sin(t * 0.00022) * 0.3;
+      var lift = Math.max(0, Math.sin(t * 0.0011)) * 0.9;
+      var slip = Math.sin(t * 0.0013) * 0.5;
+      loose.fill.position.y = loose.y + lift;
+      loose.edge.position.y = loose.y + lift;
+      loose.fill.position.x = slip;
+      loose.edge.position.x = slip;
+      loose.edge.rotation.z = slip * 0.12;
+      loose.fill.rotation.z = slip * 0.12;
+    };
+  });
+
+  /* ---- scene: HIGH-LEVEL — the machinery, wrapped in a smooth shell ---- */
+  mount("viz-highlevel", function (scene, camera) {
+    camera.position.set(0, 0, 6.5);
+    var g = new THREE.Group();
+    scene.add(g);
+    var inner = new THREE.Group();
+    g.add(inner);
+    var knot = new THREE.Mesh(
+      new THREE.TorusKnotGeometry(0.85, 0.28, 90, 14),
+      new THREE.MeshBasicMaterial({ color: ACCENT, wireframe: true, transparent: true, opacity: 0.5 })
+    );
+    inner.add(knot);
+    var shell = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(2, 1),
+      new THREE.MeshBasicMaterial({ color: ACC2, transparent: true, opacity: 0.06 })
+    );
+    var shellEdge = new THREE.LineSegments(
+      new THREE.EdgesGeometry(new THREE.IcosahedronGeometry(2, 1)),
+      new THREE.LineBasicMaterial({ color: ACC2, transparent: true, opacity: 0.25 })
+    );
+    g.add(shell, shellEdge);
+    return function (dt, t) {
+      inner.rotation.y += dt * 0.9;
+      inner.rotation.x += dt * 0.5;
+      shell.rotation.y -= dt * 0.15;
+      shellEdge.rotation.y -= dt * 0.15;
+      g.rotation.y = Math.sin(t * 0.0003) * 0.3;
+    };
+  });
+
+  /* ---- scene: VIBE-CODING — words stream in, a structure assembles ---- */
+  mount("viz-vibe", function (scene, camera) {
+    camera.position.set(0, 0, 7);
+    var g = new THREE.Group();
+    scene.add(g);
+    var target = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(1.15, 1),
+      new THREE.MeshBasicMaterial({ color: ACCENT, wireframe: true, transparent: true, opacity: 0.6 })
+    );
+    target.position.x = 1.6;
+    g.add(target);
+    var halo = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(1.6, 1),
+      new THREE.MeshBasicMaterial({ color: ACC2, wireframe: true, transparent: true, opacity: 0.08 })
+    );
+    halo.position.x = 1.6;
+    g.add(halo);
+    var M = 220, pos = new Float32Array(M * 3), life = new Float32Array(M);
+    function seed(k, initial) {
+      pos[k * 3] = -4.4 - Math.random() * 2;
+      pos[k * 3 + 1] = (Math.random() - 0.5) * 0.5;
+      pos[k * 3 + 2] = (Math.random() - 0.5) * 0.5;
+      life[k] = initial ? Math.random() : 0;
+    }
+    for (var k = 0; k < M; k++) seed(k, true);
+    var pgeo = new THREE.BufferGeometry();
+    pgeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    g.add(new THREE.Points(pgeo, new THREE.PointsMaterial({
+      color: ACCENT, size: 0.055, transparent: true, opacity: 0.9, depthWrite: false, blending: THREE.AdditiveBlending
+    })));
+    var tgt = new THREE.Vector3(1.6, 0, 0);
+    return function (dt, t) {
+      for (var k = 0; k < M; k++) {
+        life[k] += dt * (0.35 + Math.random() * 0.05);
+        if (life[k] >= 1) { seed(k, false); continue; }
+        var e = life[k] * life[k];
+        var sx = -4.4 + (tgt.x + 4.4) * e;
+        pos[k * 3] = sx + (Math.random() - 0.5) * (1 - e) * 0.3;
+        pos[k * 3 + 1] += (tgt.y - pos[k * 3 + 1]) * e * 0.3;
+        pos[k * 3 + 2] += (tgt.z - pos[k * 3 + 2]) * e * 0.3;
+      }
+      pgeo.attributes.position.needsUpdate = true;
+      target.rotation.y += dt * 0.6;
+      target.rotation.x += dt * 0.3;
+      halo.rotation.y -= dt * 0.2;
+      var p = 1 + Math.sin(t * 0.003) * 0.06;
+      target.scale.setScalar(p);
+      halo.scale.setScalar(p * 1.05);
+      g.rotation.y = Math.sin(t * 0.0003) * 0.2;
     };
   });
 })();
