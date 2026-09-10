@@ -20,9 +20,9 @@ window.I18N = {
     "agent.run.head": "把它跑起来",
     "sui.flowhead": "从请求到链上动作",
 
-    "hero.eyebrow": "Sui Basecamp · 2026 年 10 月 7–8 日 · 30 分钟场次",
-    "hero.title": "从二进制到智能体",
-    "hero.tagline": "一次巡览：软件是怎样构建的——以及 AI 会把它带向何方。",
+    "hero.eyebrow": "Sui Basecamp 2026 · 新加坡滨海湾金沙 · 10 月 7–8 日",
+    "hero.title": "Agentic Workshop",
+    "hero.tagline": "从二进制到智能体——软件是怎样构建的，以及 AI 会把它带向何方。",
     "hero.lede": "四层抽象，每一层都建立在下一层之上，最后落在一个新的地方：一个你可以对话的程序，它会推理、决策，并亲自签署交易。本页把整条路走一遍。",
     "hero.cta1": "开始巡览",
     "hero.cta2": "下载幻灯片",
@@ -103,7 +103,7 @@ window.I18N = {
     "qr.head": "把它带走。",
     "qr.body": "这个二维码指向本页。扫一扫即可在手机上打开本工作坊——它是在你的浏览器里、根据本页加载的地址生成的。",
 
-    "foot.blurb": "BIAR 的一场 Sui Basecamp 工作坊——软件是怎样构建的，以及 AI 会把它带向何方。2026 年 10 月 7–8 日。",
+    "foot.blurb": "Agentic Workshop——BIAR 在 Sui Basecamp 2026 的一场分享。新加坡滨海湾金沙 · 10 月 7–8 日。",
     "foot.slides": "幻灯片（PDF）",
     "foot.top": "回到顶部",
     "foot.thanks": "谢谢——有问题吗？动手做吧。"
@@ -126,9 +126,9 @@ window.I18N = {
     "agent.run.head": "Menjalankannya",
     "sui.flowhead": "Daripada permintaan kepada tindakan atas rantai",
 
-    "hero.eyebrow": "Sui Basecamp · 7–8 Okt 2026 · sesi 30 minit",
-    "hero.title": "Daripada binari kepada ejen",
-    "hero.tagline": "Lawatan tentang cara perisian dibina — dan ke mana AI membawanya seterusnya.",
+    "hero.eyebrow": "Sui Basecamp 2026 · Marina Bay Sands, Singapura · 7–8 Okt",
+    "hero.title": "Agentic Workshop",
+    "hero.tagline": "Daripada binari kepada ejen — cara perisian dibina, dan ke mana AI membawanya seterusnya.",
     "hero.lede": "Empat lapisan abstraksi, setiap satu dibina atas lapisan di bawahnya, berakhir di suatu tempat yang baharu: sebuah program yang anda ajak berbual, yang menaakul, membuat keputusan, dan menandatangani transaksinya sendiri. Halaman ini menyusuri keseluruhan laluan itu.",
     "hero.cta1": "Mula lawatan",
     "hero.cta2": "Muat turun slaid",
@@ -209,7 +209,7 @@ window.I18N = {
     "qr.head": "Bawa ia bersama anda.",
     "qr.body": "Kod ini menghala ke halaman ini. Imbas untuk membuka bengkel pada telefon anda — ia dijana dalam pelayar anda, dari mana-mana halaman ini dimuatkan.",
 
-    "foot.blurb": "Bengkel Sui Basecamp oleh BIAR — cara perisian dibina, dan ke mana AI membawanya seterusnya. 7–8 Okt 2026.",
+    "foot.blurb": "Agentic Workshop — sesi oleh BIAR di Sui Basecamp 2026. Marina Bay Sands, Singapura · 7–8 Okt.",
     "foot.slides": "Slaid (PDF)",
     "foot.top": "Kembali ke atas",
     "foot.thanks": "Terima kasih — soalan? Mari bina."
