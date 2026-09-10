@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>From binary to agents — Sui Basecamp workshop</title>
+<meta name="description" content="A 30-minute tour of how software gets built — binary, low-level, high-level, vibe-coding — how AI agents work, and how an agentic wallet signs real transactions on Sui." />
+<meta name="color-scheme" content="dark" />
+<meta property="og:title" content="From binary to agents" />
+<meta property="og:description" content="How software gets built, and where AI takes it next. A Sui Basecamp workshop by BIAR." />
+<meta property="og:type" content="website" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%234da2ff'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="dot"></span>binary&nbsp;&rarr;&nbsp;agents</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#evolution" data-i18n="nav.evolution">Evolution</a>
+      <a href="#agent" data-i18n="nav.agent">Agents</a>
+      <a href="#sui" data-i18n="nav.sui">Sui</a>
+      <a href="#sources" data-i18n="nav.sources">Sources</a>
+    </nav>
+    <div class="nav-right">
+      <div class="langs" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="zh" aria-pressed="false" lang="zh">中文</button>
+        <button type="button" data-lang="ms" aria-pressed="false" lang="ms">BM</button>
+      </div>
+      <a class="btn" href="Suibasecamp-Workshop.pdf" target="_blank" rel="noopener" data-i18n="nav.slides">Slides</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu" aria-expanded="false">≡</button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="hero">
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="hero-eyebrow" data-i18n="hero.eyebrow">Sui Basecamp · Oct 7–8, 2026 · 30-min session</div>
+      <h1 data-i18n="hero.title">From binary to agents</h1>
+      <p class="lede-serif" data-i18n="hero.tagline">A tour of how software gets built — and where AI takes it next.</p>
+      <p class="body" data-i18n="hero.lede">Four layers of abstraction, each built on the one below it, ending somewhere new: a program you talk to that reasons, decides, and signs its own transactions. This page walks the whole path.</p>
+      <div class="hero-cta">
+        <a class="btn btn-solid" href="#evolution" data-i18n="hero.cta1">Start the tour</a>
+        <a class="btn" href="Suibasecamp-Workshop.pdf" target="_blank" rel="noopener" data-i18n="hero.cta2">Download the slides</a>
+        <a class="btn" href="#sources" data-i18n="hero.cta3">Sources</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="hands" class="tight">
+    <div class="wrap">
+      <div class="kicker" data-i18n="hands.kicker">Before we start</div>
+      <div class="section-head" style="margin-bottom:20px">
+        <h2 data-i18n="hands.head">A quick show of hands.</h2>
+        <p data-i18n="hands.sub">No wrong answers — this is just where the tour starts from for you. Tap the ones that apply.</p>
+      </div>
+      <div class="hands">
+        <button class="hand" type="button" aria-pressed="false"><span class="mk">✓</span><span data-i18n="hands.h1">I vibe-code today</span></button>
+        <button class="hand" type="button" aria-pressed="false"><span class="mk">✓</span><span data-i18n="hands.h2">I know a high-level language (Python, JS…)</span></button>
+        <button class="hand" type="button" aria-pressed="false"><span class="mk">✓</span><span data-i18n="hands.h3">I know a low-level language (C, Assembly…)</span></button>
+      </div>
+    </div>
+  </section>
+
+  <section id="evolution">
+    <div class="wrap">
+      <div class="kicker" data-i18n="evo.kicker">Part 01</div>
+      <div class="section-head">
+        <h2 data-i18n="evo.head">The evolution of <span class="serif">software.</span></h2>
+        <p data-i18n="evo.sub">Every layer of software is built on the one beneath it. Here are four of them, stacked — from the machine at the bottom to plain language at the top. Open each one.</p>
+      </div>
+
+      <div class="stack" id="stack">
+        <button class="layer" aria-expanded="true">
+          <span class="ln">00</span>
+          <h3 data-i18n="evo.l1.h">Binary</h3>
+          <span class="tag">0 · 1</span>
+          <span class="chev">▸</span>
+          <div class="layer-body"><p data-i18n="evo.l1.p">Every computer, at bottom, only understands two states: on and off — written as 0 and 1, bits grouped into bytes. Every program that has ever run was binary at some point.</p></div>
+        </button>
+        <button class="layer" aria-expanded="false">
+          <span class="ln">01</span>
+          <h3 data-i18n="evo.l2.h">Low-level languages</h3>
+          <span class="tag">Assembly · C</span>
+          <span class="chev">▸</span>
+          <div class="layer-body"><p data-i18n="evo.l2.p">Assembly and C let you write closer to what the machine actually does. You manage memory yourself — no safety net. Fast and precise, but every detail is your responsibility.</p></div>
+        </button>
+        <button class="layer" aria-expanded="false">
+          <span class="ln">02</span>
+          <h3 data-i18n="evo.l3.h">High-level languages</h3>
+          <span class="tag">Python · JavaScript · Java</span>
+          <span class="chev">▸</span>
+          <div class="layer-body"><p data-i18n="evo.l3.p">Languages that read closer to English than to machine code. The language handles memory, so you focus on logic. A trade: some speed and control, for a lot of speed writing it.</p></div>
+        </button>
+        <button class="layer" aria-expanded="false">
+          <span class="ln">03</span>
+          <h3 data-i18n="evo.l4.h">Vibe-coding</h3>
+          <span class="tag" data-i18n="evo.l4.tag">plain language</span>
+          <span class="chev">▸</span>
+          <div class="layer-body"><p data-i18n="evo.l4.p">Describe what you want in plain language; the AI writes the code — and decides the syntax, the structure, even the language. Another layer of abstraction: the same evolution, one step further.</p></div>
+        </button>
+      </div>
+
+      <p class="closing-line" data-i18n="evo.closing">Each layer hides the one below it. Vibe-coding doesn't replace the others — it sits on top of them, the way Python sits on top of C, and C sits on top of binary.</p>
+
+      <blockquote class="pullquote">
+        <span data-i18n="evo.quote">“Maybe in ten years, talking to an AI will feel just as outdated. Maybe we'll just think, and a product appears.”</span>
+        <cite data-i18n="evo.quote.cite">— on where this evolution might go</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <section id="agent">
+    <div class="wrap">
+      <div class="kicker" data-i18n="agent.kicker">Part 02</div>
+      <div class="section-head">
+        <h2 data-i18n="agent.head">Building an <span class="serif">agent.</span></h2>
+        <p data-i18n="agent.sub">A program that can reason, decide, and act — not just answer. It can call tools: search the web, run code, send a transaction.</p>
+      </div>
+
+      <div class="diagram reveal" aria-hidden="true">
+        <svg viewBox="0 0 720 150" role="img">
+          <line class="stroke stroke-accent dash" x1="150" y1="75" x2="270" y2="75" />
+          <line class="stroke stroke-accent dash" x1="390" y1="75" x2="510" y2="75" />
+          <path class="stroke stroke-accent dash" d="M600 95 C600 140, 120 140, 120 98" fill="none" />
+          <circle cx="90" cy="75" r="42" fill="none" class="stroke" />
+          <circle cx="360" cy="75" r="42" fill="none" class="stroke" />
+          <circle cx="630" cy="75" r="42" fill="none" class="stroke" />
+          <text x="90" y="80" text-anchor="middle" class="lbl-strong" data-i18n="loop.observe">observe</text>
+          <text x="360" y="80" text-anchor="middle" class="lbl-strong" data-i18n="loop.think">think</text>
+          <text x="630" y="80" text-anchor="middle" class="lbl-strong" data-i18n="loop.act">act</text>
+          <text x="360" y="135" text-anchor="middle" class="lbl" data-i18n="loop.caption">…then observe again</text>
+        </svg>
+      </div>
+
+      <div class="section-head" style="margin:56px 0 24px">
+        <h2 style="font-size:clamp(22px,3.4vw,30px)" data-i18n="agent.stack.head">Choosing your stack</h2>
+      </div>
+      <div class="grid cols-2">
+        <div class="card reveal">
+          <span class="tag" data-i18n="agent.local.tag">Open-source · local</span>
+          <h3 data-i18n="agent.local.h">Run it on your machine</h3>
+          <p data-i18n="agent.local.p">Qwen 2.5 (7B) or Hermes 3 (8B) through Ollama, 4-bit quantized (Q4_K_M GGUF) to fit in ~4.3–4.7 GB. Windows, Linux and macOS, with an 8 GB RAM floor. On Apple Silicon (M4), Metal acceleration gives 40–50+ tokens/sec.</p>
+          <div class="spec"><span>Ollama</span><span>Q4_K_M GGUF</span><span>~4.5 GB</span><span>8 GB RAM</span><span>40–50 tok/s (M4)</span></div>
+        </div>
+        <div class="card reveal">
+          <span class="tag" data-i18n="agent.cloud.tag">Hosted · via OpenRouter</span>
+          <h3 data-i18n="agent.cloud.h">Call a model in the cloud</h3>
+          <p data-i18n="agent.cloud.p">No local compute needed. OpenRouter gives API access to dozens of models, including free tiers — a good fallback when your machine isn't powerful enough.</p>
+          <div class="spec"><span>OpenRouter</span><span>no GPU</span><span>free tiers</span></div>
+        </div>
+      </div>
+
+      <div class="term reveal">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <pre><span class="c">$</span> ollama run qwen2.5:7b-instruct-q4_K_M
+<span class="m">pulling manifest... done</span>
+<span class="c">$</span> ollama run hf.co/NousResearch/Hermes-3-Llama-3.1-8B-GGUF:Q4_K_M
+<span class="g">&gt;&gt;&gt; ready</span></pre>
+      </div>
+
+      <div class="term reveal">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <pre><span class="c">$</span> export OPENROUTER_API_KEY=sk-...
+<span class="c">$</span> agent.model = <span class="g">"openrouter/qwen-2.5-7b-instruct"</span>
+<span class="g">&gt;&gt;&gt; connected</span></pre>
+      </div>
+
+      <div class="section-head" style="margin:56px 0 20px">
+        <h2 style="font-size:clamp(22px,3.4vw,30px)" data-i18n="agent.watch.head">Watching the agent think</h2>
+        <p data-i18n="agent.watch.sub">Every step is visible: what the agent decided, which tool it called, and what came back.</p>
+      </div>
+      <div class="term reveal">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <pre><span class="m">&gt; user:</span>  <span data-i18n="agent.trace.user">what's my Sui balance?</span>
+<span class="m">&gt; agent:</span> <span data-i18n="agent.trace.agent1">calling</span> <span class="c">get_balance()</span>
+<span class="m">&gt; tool:</span>  <span class="g">12.4 SUI</span>
+<span class="m">&gt; agent:</span> <span data-i18n="agent.trace.agent2">You have 12.4 SUI.</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="sui">
+    <div class="wrap">
+      <div class="kicker" data-i18n="sui.kicker">Part 03</div>
+      <div class="section-head">
+        <h2 data-i18n="sui.head">Agentic wallets on <span class="serif">Sui.</span></h2>
+        <p data-i18n="sui.sub">The agent reasons in natural language, but every action it takes is a real, signed transaction on Sui.</p>
+      </div>
+
+      <div class="pipe reveal">
+        <span><span class="i">01</span><span data-i18n="sui.p1">plain-language request</span></span>
+        <span><span class="i">02</span><span data-i18n="sui.p2">agent reasons</span></span>
+        <span><span class="i">03</span><span data-i18n="sui.p3">proposes a transaction</span></span>
+        <span><span class="i">04</span><span data-i18n="sui.p4">you review</span></span>
+        <span class="sign"><span class="i">05</span><span data-i18n="sui.p5">you sign</span></span>
+        <span><span class="i">06</span><span data-i18n="sui.p6">on-chain</span></span>
+      </div>
+
+      <div class="section-head" style="margin:52px 0 22px">
+        <h2 style="font-size:clamp(22px,3.4vw,30px)" data-i18n="sui.build.head">What we're building</h2>
+      </div>
+      <div class="wallet reveal">
+        <div class="top"><span>Agentic Wallet · Sui</span><span>0x7f…a2</span></div>
+        <div class="bal">12.4 <small>SUI</small></div>
+        <div class="ask" data-i18n="sui.wallet.ask">Ask your agent…</div>
+        <div class="prop">
+          <div class="row"><span data-i18n="sui.wallet.prop">Send 2 SUI to alice.sui</span><span class="badge">REVIEWED</span></div>
+        </div>
+        <button class="confirm" type="button" data-i18n="sui.wallet.confirm">CONFIRM ON-CHAIN</button>
+      </div>
+      <p class="closing-line" data-i18n="sui.build.caption">The agent proposes the transaction in plain language; you stay the one who signs.</p>
+    </div>
+  </section>
+
+  <section id="sources">
+    <div class="wrap">
+      <div class="kicker" data-i18n="sources.kicker">Sources</div>
+      <div class="section-head">
+        <h2 data-i18n="sources.head">Everything referenced, <span class="serif">in one place.</span></h2>
+      </div>
+      <div class="sources">
+        <a class="src" href="https://sui.io/" target="_blank" rel="noopener"><span class="l">Sui</span><span class="d" data-i18n="src.sui.d">The Layer-1 the wallet signs to</span><span class="u">sui.io →</span></a>
+        <a class="src" href="https://sui.io/basecamp" target="_blank" rel="noopener"><span class="l">Sui Basecamp</span><span class="d" data-i18n="src.basecamp.d">The event this workshop was given at</span><span class="u">sui.io/basecamp →</span></a>
+        <a class="src" href="https://docs.sui.io/" target="_blank" rel="noopener"><span class="l">Sui documentation</span><span class="d" data-i18n="src.docs.d">Move, transactions, the TypeScript SDK</span><span class="u">docs.sui.io →</span></a>
+        <a class="src" href="https://ollama.com/" target="_blank" rel="noopener"><span class="l">Ollama</span><span class="d" data-i18n="src.ollama.d">Runs quantized models locally</span><span class="u">ollama.com →</span></a>
+        <a class="src" href="https://huggingface.co/Qwen/Qwen2.5-7B-Instruct" target="_blank" rel="noopener"><span class="l">Qwen 2.5 (7B)</span><span class="d" data-i18n="src.qwen.d">The open-weights model used locally</span><span class="u">huggingface.co/Qwen →</span></a>
+        <a class="src" href="https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-8B" target="_blank" rel="noopener"><span class="l">Hermes 3 (8B)</span><span class="d" data-i18n="src.hermes.d">The alternate local model</span><span class="u">huggingface.co/NousResearch →</span></a>
+        <a class="src" href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noopener"><span class="l">llama.cpp / GGUF</span><span class="d" data-i18n="src.gguf.d">The quantization format (Q4_K_M) that shrinks the model</span><span class="u">github.com/ggml-org/llama.cpp →</span></a>
+        <a class="src" href="https://openrouter.ai/" target="_blank" rel="noopener"><span class="l">OpenRouter</span><span class="d" data-i18n="src.openrouter.d">One API in front of many hosted models</span><span class="u">openrouter.ai →</span></a>
+        <a class="src" href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener"><span class="l">ReAct (2022)</span><span class="d" data-i18n="src.react.d">The observe → think → act loop, written up</span><span class="u">arxiv.org/abs/2210.03629 →</span></a>
+        <a class="src" href="https://threejs.org/" target="_blank" rel="noopener"><span class="l">three.js</span><span class="d" data-i18n="src.three.d">The hero animation on this page</span><span class="u">threejs.org →</span></a>
+        <a class="src" href="https://github.com/davidshimjs/qrcodejs" target="_blank" rel="noopener"><span class="l">QRCode.js</span><span class="d" data-i18n="src.qr.d">Generates the code below, in your browser</span><span class="u">github.com/davidshimjs/qrcodejs →</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="qr" class="tight">
+    <div class="wrap">
+      <div class="qr-wrap">
+        <div id="qr" aria-label="QR code linking to this page"></div>
+        <div>
+          <h2 data-i18n="qr.head">Take it with you.</h2>
+          <p data-i18n="qr.body">This code points to this page. Scan it to open the workshop on your phone — it's generated in your browser, from wherever this page is loaded.</p>
+          <p class="qr-url" id="qrUrl"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand"><span class="dot"></span>binary → agents</div>
+        <p data-i18n="foot.blurb">A Sui Basecamp workshop by BIAR — how software gets built, and where AI takes it next. Oct 7–8, 2026.</p>
+      </div>
+      <div class="foot-links">
+        <a href="https://x.com/justbiar" target="_blank" rel="noopener"><svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@justbiar</a>
+        <a href="Suibasecamp-Workshop.pdf" target="_blank" rel="noopener" data-i18n="foot.slides">Slides (PDF)</a>
+        <a href="#top" data-i18n="foot.top">Back to top</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="foot.thanks">Thank you — questions? Let's build.</span>
+      <span id="year"></span>
+    </div>
+  </div>
+</footer>
+
+<noscript>
+  <div style="max-width:680px;margin:120px auto;padding:0 24px;font-family:system-ui,sans-serif;color:#aeb6c1">
+    <h1 style="color:#f2f5f8">From binary to agents</h1>
+    <p>A Sui Basecamp workshop: how software gets built across four layers — binary, low-level, high-level, vibe-coding — how an AI agent reasons and calls tools, and how an agentic wallet turns a plain-language request into a signed transaction on Sui.</p>
+    <p><a href="Suibasecamp-Workshop.pdf" style="color:#4da2ff">Download the slides</a></p>
+  </div>
+</noscript>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="i18n.js"></script>
+<script src="scene.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
