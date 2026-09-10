@@ -10,6 +10,16 @@ window.I18N = {
     "nav.sources": "资料",
     "nav.slides": "幻灯片",
 
+    "deck.hint": "方向键，或滑动 →",
+    "contents.kicker": "目录",
+    "contents.01": "软件的演化",
+    "contents.02": "构建一个智能体",
+    "contents.03": "Sui 上的智能体钱包",
+    "evo.fourhead": "四层，一条演化线。",
+    "agent.whathead": "什么是智能体？",
+    "agent.run.head": "把它跑起来",
+    "sui.flowhead": "从请求到链上动作",
+
     "hero.eyebrow": "Sui Basecamp · 2026 年 10 月 7–8 日 · 30 分钟场次",
     "hero.title": "从二进制到智能体",
     "hero.tagline": "一次巡览：软件是怎样构建的——以及 AI 会把它带向何方。",
@@ -105,6 +115,16 @@ window.I18N = {
     "nav.sui": "Sui",
     "nav.sources": "Sumber",
     "nav.slides": "Slaid",
+
+    "deck.hint": "Kekunci anak panah, atau leret →",
+    "contents.kicker": "Kandungan",
+    "contents.01": "Evolusi perisian",
+    "contents.02": "Membina sebuah ejen",
+    "contents.03": "Dompet berejen di Sui",
+    "evo.fourhead": "Empat lapisan, satu evolusi.",
+    "agent.whathead": "Apa itu ejen?",
+    "agent.run.head": "Menjalankannya",
+    "sui.flowhead": "Daripada permintaan kepada tindakan atas rantai",
 
     "hero.eyebrow": "Sui Basecamp · 7–8 Okt 2026 · sesi 30 minit",
     "hero.title": "Daripada binari kepada ejen",
