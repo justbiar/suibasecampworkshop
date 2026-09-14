@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Register your agent — Sui Basecamp</title><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="agents.css"></head>
+<body class="directory"><header class="directory-nav"><a class="brand" href="/">agentic workshop</a><nav><a href="/agents">← Agent directory</a></nav></header>
+<main class="directory-main registration"><span class="network-label">SUI TESTNET / REGISTRATION</span><h1>Your agent belongs here.</h1><p>The directory reads every current AgentProfileV2 object in the shared workshop package. Once your registration is indexed, it appears automatically. No API key or message to a central agent is needed.</p>
+<h2>1. Prepare your agent</h2><p>Follow the <a href="https://github.com/justbiar/suibasecamp" target="_blank" rel="noopener noreferrer">agent tutorial</a>. Have a testnet agent wallet and a funded Sui CLI signer. Use your own SuiNS name and memory namespace. The CLI signer becomes the profile registrant; it may differ from the agent wallet.</p>
+<h2>2. Register with the common package</h2><p>Run <code>sui client active-address</code> to confirm the signer. Replace <code>0xYOUR_AGENT_WALLET</code> and example metadata below before running. Keep the package ID unchanged. This command submits a transaction and spends testnet gas. Only declare capabilities your agent implements.</p>
+<pre><code>sui client switch --env testnet
+sui client active-address
+sui client call \
+  --package 0x73795ef21ec3554a141ddcf8d8b6696245762c8a071eeec4bbda2b0818f694c7 \
+  --module agent_profile \
+  --function create_v2 \
+  --args 0xYOUR_AGENT_WALLET \
+    'myagent.sui' 'myagent' 'local://sui-local-agent' '2.0.0' \
+    '["create_wallet","get_balance","resolve_suins","get_agent_suins_identity","remember","recall","get_agent_profile"]' \
+  --gas-budget 10000000 \
+  --json</code></pre>
+<p>Save the created AgentProfileV2 object ID. Do not register again simply because the page has not refreshed yet: repeated creation makes separate profiles.</p>
+<h2>3. Find your agent</h2><p>After the transaction succeeds, allow indexing time and up to one minute for the directory cache, then open the <a href="/agents">agent directory</a> and select Refresh. A new profile in this shared package appears automatically; an agent created only on your computer does not.</p>
+<h2>What your registration means</h2><p>The profile fields are public. Do not put credentials or private information in them. A SuiNS name in a profile does not prove ownership of that name. A <code>local://</code> endpoint describes a local process, not a reachable web service. This directory does not test agent availability.</p><p>Publishing your own copy of the package gives it a different type identity, so it will not appear in this directory. Use the shared package above. Registration events can support a future persistent indexer, but this version discovers profile objects directly and also includes profiles created before events were added.</p>
+</main></body></html>

@@ -1,0 +1,60 @@
+body.directory { height: auto; min-height: 100vh; overflow: auto; background: radial-gradient(ellipse at 90% 10%, #102235 0, transparent 38%), var(--bg); }
+.directory-nav { max-width: 1240px; margin: auto; display: flex; align-items: center; justify-content: space-between; padding: 28px 36px; border-bottom: 1px solid var(--line); }
+.directory-nav nav { display: flex; gap: 28px; font-size: 13px; }
+.directory-nav nav a { border: 0; color: var(--ink-2); }
+.directory-nav nav a[aria-current] { color: var(--accent-2); }
+.directory-main { max-width: 1168px; margin: auto; padding: 0 36px; }
+.directory-hero { padding: 88px 0 64px; position: relative; border-bottom: 1px solid var(--line); }
+.network-label, .small-label, .source-label { font: 10px var(--mono); letter-spacing: .13em; color: var(--ink-2); }
+.network-label { color: var(--accent-2); display: flex; align-items: center; gap: 9px; margin-bottom: 26px; }
+.network-label span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-2); box-shadow: 0 0 12px #6ee7c777; }
+.directory-hero h1 { font-family: var(--display); font-size: clamp(48px, 6.4vw, 82px); font-weight: 500; letter-spacing: -.035em; line-height: 1.02; }
+.directory-hero h1 span { color: var(--accent); }
+.directory-intro { max-width: 560px; color: var(--ink-2); font-size: 16px; margin: 25px 0; }
+.join-link { display: inline-flex; align-items: center; gap: 34px; background: var(--accent-2); color: #04100d; border: 0; padding: 12px 18px; border-radius: 6px; font-size: 13px; font-weight: 600; }
+.join-link:hover { background: #99efd9; color: #04100d; }
+.hero-grid { position: absolute; right: 0; bottom: 68px; display: grid; grid-template-columns: 28px 120px; gap: 16px 12px; font: 10px var(--mono); letter-spacing: .12em; color: var(--ink-2); border-left: 1px solid var(--line-2); padding-left: 28px; }
+.hero-grid span:nth-child(odd) { color: var(--accent); }
+.directory-list { padding: 42px 0 64px; }
+.list-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.list-heading h2 { font-size: 27px; letter-spacing: -.03em; margin-top: 12px; }
+#agent-count { font: 13px var(--mono); color: var(--accent-2); vertical-align: middle; margin-left: 10px; }
+.list-tools { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-top: 28px; }
+.search { display: flex; align-items: center; gap: 12px; border: 1px solid var(--line-2); background: #0c1016; padding: 12px 15px; border-radius: 6px; width: min(100%, 500px); color: var(--ink-2); }
+.search input { width: 100%; border: 0; background: transparent; color: var(--ink); font: 12px var(--sans); outline-offset: 7px; }
+.search input::placeholder { color: var(--ink-2); }
+.directory-status { color: var(--ink-2); font-size: 12px; min-height: 20px; margin: 20px 0; }
+.agent-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 20px; }
+.agent-card { min-width: 0; padding: 28px; border: 1px solid #2b3b4c; border-radius: 10px; background: linear-gradient(140deg,#101c29,#0d1017 60%); }
+.agent-top { display: flex; justify-content: space-between; gap: 8px; align-items: center; margin-bottom: 22px; }
+.agent-avatar { display: grid; place-items: center; width: 50px; height: 50px; border-radius: 10px; font: 25px var(--display); color: var(--accent); background: #4da2ff19; border: 1px solid #4da2ff44; }
+.chain-badge { color: var(--accent-2); border: 1px solid #6ee7c730; border-radius: 4px; padding: 5px 7px; font: 9px var(--mono); letter-spacing: .06em; }
+.agent-card h3 { font-size: 27px; overflow-wrap: anywhere; }
+.agent-summary { color: var(--ink-2); font-size: 12px; margin: 10px 0 24px; }
+.agent-details { border-top: 1px solid var(--line); padding-top: 20px; margin: 0 0 24px; }
+.agent-field { margin-bottom: 14px; }
+.agent-field dt { font: 9px var(--mono); letter-spacing: .12em; color: var(--ink-2); margin-bottom: 6px; }
+.agent-field dd { margin: 0; color: #c5d1de; font: 11px/1.7 var(--mono); overflow-wrap: anywhere; }
+.skill-list { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 12px 0 24px; list-style: none; }
+.skill-list li { font: 10px/1.4 var(--mono); background: #18222e; border: 1px solid #273441; color: #b4c8dc; padding: 6px 8px; border-radius: 4px; overflow-wrap: anywhere; }
+.agent-card-footer { display: flex; justify-content: space-between; gap: 16px; border-top: 1px solid var(--line); padding-top: 18px; font-size: 12px; }
+.agent-card-footer a { border: 0; color: var(--accent); }
+.directory-note { color: var(--ink-2); max-width: 740px; font-size: 12px; margin-top: 24px; }
+.load-more { margin-top: 22px; }
+[hidden] { display: none !important; }
+.join-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 42px 0 60px; border-top: 1px solid var(--line); }
+.join-panel h2 { font: 46px/1.05 var(--display); margin: 18px 0; }
+.join-panel p { color: var(--ink-2); font-size: 13px; max-width: 360px; }
+.join-panel ol { padding: 0; margin: 0; list-style: none; }
+.join-panel li { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.join-panel li > span { font: 11px var(--mono); color: var(--accent); padding-top: 3px; }
+.join-panel strong { font-size: 14px; font-weight: 500; }
+.join-panel li p { margin: 5px 0 0; }
+.directory-footer { max-width: 1168px; margin: auto; border-top: 1px solid var(--line); padding: 25px 36px; display: flex; justify-content: space-between; gap: 15px; font: 9px var(--mono); letter-spacing: .09em; color: var(--ink-2); }
+.directory-footer a { border: 0; }
+.registration { max-width: 850px; padding-top: 55px; padding-bottom: 60px; }
+.registration h1 { font: 58px var(--display); margin: 20px 0; }
+.registration h2 { font-size: 24px; margin: 40px 0 16px; }
+.registration p, .registration li { font-size: 15px; color: #b4bcc8; }
+.registration pre { overflow: auto; border: 1px solid var(--line-2); border-radius: 6px; padding: 20px; background: #0c1016; font: 12px/1.8 var(--mono); }
+@media(max-width: 760px) { .directory-nav { padding: 20px; } .directory-nav nav { gap: 14px; font-size: 11px; } .directory-nav .brand { font-size: 9px; padding: 0; } .directory-main { padding: 0 22px; } .directory-hero { padding: 55px 0 40px; } .hero-grid { display: none; } .agent-grid,.join-panel { grid-template-columns: 1fr; } .join-panel { gap: 15px; } .source-label { display: none; } .search { width: 100%; } .agent-card { padding: 22px; } .directory-footer { flex-direction: column; padding: 24px 22px; } .network-label { font-size: 8px; letter-spacing: .07em; } }
