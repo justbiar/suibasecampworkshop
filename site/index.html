@@ -4,16 +4,16 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Agentic Workshop — Sui Basecamp 2026</title>
-<meta name="description" content="A 30-minute workshop at Sui Basecamp 2026: how software gets built — binary, low-level, high-level, vibe-coding — how AI agents work, and how an agentic wallet signs real transactions on Sui." />
+<meta name="description" content="A 30-minute workshop at Sui Basecamp 2026: how software gets built — binary, low-level, high-level, vibe-coding — how AI agents work, and OpenRouter tool selection, SuiNS identity, and persistent Walrus Memory." />
 <meta name="color-scheme" content="dark" />
 <meta property="og:title" content="Agentic Workshop — Sui Basecamp 2026" />
 <meta property="og:description" content="From binary to agents: how software gets built, and where AI takes it next. A workshop at Sui Basecamp 2026 by BIAR." />
 <meta property="og:type" content="website" />
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%234da2ff'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='%23f28b57'/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -26,13 +26,13 @@
   <div class="topbar-right">
     <a class="pdf-link" href="/agents">Agents</a>
     <button class="chip-btn" id="qrBtn" type="button" aria-haspopup="dialog" title="Show QR (Q)">QR</button>
-    <a class="pdf-link" href="Suibasecamp-Workshop.pdf" target="_blank" rel="noopener" title="Slides (PDF)" data-i18n="nav.slides">Slides</a>
+    <a class="pdf-link" href="https://github.com/justbiar/suibasecamp" target="_blank" rel="noopener" title="Current agent tutorial" data-i18n="workshop.tutorial">Tutorial</a>
     <div class="langs" role="group" aria-label="Language">
       <button type="button" data-lang="en" aria-pressed="true">EN</button>
       <button type="button" data-lang="zh" aria-pressed="false" lang="zh">中文</button>
       <button type="button" data-lang="ms" aria-pressed="false" lang="ms">BM</button>
     </div>
-    <span class="counter" id="counter">01 / 20</span>
+    <span class="counter" id="counter">01 / 21</span>
   </div>
 </div>
 
@@ -49,6 +49,7 @@
           <div id="qrHero" aria-hidden="true"></div>
           <span data-i18n="qr.head">Take it with you.</span>
         </div>
+        <div class="stack-strip"><span>OpenRouter</span><span>Sui</span><span>SuiNS</span><span>Walrus Memory</span></div>
         <p class="hint" data-i18n="deck.hint">Arrow keys, or swipe →</p>
       </div>
     </section>
@@ -60,7 +61,7 @@
         <ol class="contents">
           <li><button type="button" data-goto="4"><span class="n">01</span><span data-i18n="contents.01">The evolution of software</span></button></li>
           <li><button type="button" data-goto="11"><span class="n">02</span><span data-i18n="contents.02">Building an agent</span></button></li>
-          <li><button type="button" data-goto="16"><span class="n">03</span><span data-i18n="contents.03">Agentic wallets on Sui</span></button></li>
+          <li><button type="button" data-goto="16"><span class="n">03</span><span data-i18n="workshop.part3">Identity &amp; memory on Sui</span></button></li>
         </ol>
       </div>
     </section>
@@ -70,12 +71,28 @@
       <div class="slide-inner">
         <div class="kicker" data-i18n="hands.kicker">Before we start</div>
         <h2 data-i18n="hands.head">A quick show of hands.</h2>
-        <p class="sub" data-i18n="hands.sub">No wrong answers — this is just where the tour starts from for you. Tap the ones that apply.</p>
-        <div class="hands">
-          <button class="hand" type="button" aria-pressed="false"><span class="mk">✓</span><span data-i18n="hands.h1">I vibe-code today</span></button>
-          <button class="hand" type="button" aria-pressed="false"><span class="mk">✓</span><span data-i18n="hands.h2">I know a high-level language (Python, JS…)</span></button>
-          <button class="hand" type="button" aria-pressed="false"><span class="mk">✓</span><span data-i18n="hands.h3">I know a low-level language (C, Assembly…)</span></button>
+        <p class="sub" data-i18n="hands.sub">Count the hands in the room. Enter a number for each group to update the chart.</p>
+        <div class="attendance-status" role="status"><span id="attendance-loading" data-i18n="attendance.loading">Connecting to the participant count…</span><span id="attendance-live" data-i18n="attendance.live" hidden>Live · QR participants update automatically</span><span id="attendance-joined" data-i18n="attendance.joined" hidden>You’re counted. Welcome to the workshop!</span><span id="attendance-error" data-i18n="attendance.error" hidden>Participant count unavailable. Reconnecting…</span> <button id="attendance-retry" class="chip-btn" type="button" hidden data-i18n="attendance.retry">Retry</button></div>
+        <div class="audience-poll" id="audiencePoll">
+          <div class="poll-inputs">
+            <label class="poll-total" for="poll-total"><span data-i18n="poll.total">Total participants</span><input id="poll-total" type="number" min="0" max="9999" step="1" value="0" inputmode="numeric" aria-describedby="poll-note poll-error" /></label>
+            <div class="poll-mode"><span id="poll-manual" hidden data-i18n="poll.manual">Manual total · saved in this browser</span><button id="poll-auto" class="chip-btn" type="button" hidden data-i18n="poll.auto">Use QR count</button></div>
+            <label for="poll-vibe"><span data-i18n="hands.h1">I vibe-code today</span><input id="poll-vibe" type="number" min="0" max="9999" step="1" value="0" inputmode="numeric" aria-describedby="poll-note poll-error" /></label>
+            <label for="poll-high"><span data-i18n="hands.h2">I know a high-level language (Python, JS…)</span><input id="poll-high" type="number" min="0" max="9999" step="1" value="0" inputmode="numeric" aria-describedby="poll-note poll-error" /></label>
+            <label for="poll-low"><span data-i18n="hands.h3">I know a low-level language (C, Assembly…)</span><input id="poll-low" type="number" min="0" max="9999" step="1" value="0" inputmode="numeric" aria-describedby="poll-note poll-error" /></label>
+            <button type="button" class="chip-btn" id="poll-reset" data-i18n="poll.reset">Reset counts</button>
+          </div>
+          <figure class="poll-chart" aria-labelledby="poll-caption">
+            <figcaption id="poll-caption" data-i18n="poll.caption">Percentage of participants</figcaption>
+            <div class="poll-chart-row"><div><span>Vibe-coding</span><output for="poll-vibe poll-total" id="count-vibe">—</output></div><div class="poll-track"><span id="bar-vibe"></span></div></div>
+            <div class="poll-chart-row"><div><span data-i18n="poll.high">High-level languages</span><output for="poll-high poll-total" id="count-high">—</output></div><div class="poll-track"><span id="bar-high"></span></div></div>
+            <div class="poll-chart-row"><div><span data-i18n="poll.low">Low-level languages</span><output for="poll-low poll-total" id="count-low">—</output></div><div class="poll-track"><span id="bar-low"></span></div></div>
+            <div class="poll-axis" aria-hidden="true"><span>0%</span><span id="poll-max">100%</span></div>
+            <p class="lesson-note" id="poll-empty" data-i18n="poll.empty">Scan the QR or enter a total to calculate percentages.</p>
+          </figure>
         </div>
+        <p class="lesson-note" id="poll-note" data-i18n="poll.note">QR arrivals set the total automatically. Edit it to use a manual total, or choose “Use QR count” to switch back. Groups can overlap; percentages may add up to more than 100%.</p>
+        <p class="poll-error" id="poll-error" role="alert" hidden data-i18n="poll.error">Use whole numbers from 0 to 9999. A group cannot exceed the total participants.</p>
       </div>
     </section>
 
@@ -89,14 +106,21 @@
     </section>
 
     <!-- 05 -->
-    <section class="slide" aria-label="Binary">
-      <div class="slide-inner layer-slide">
+    <section class="slide slide--binary" aria-label="Binary">
+      <canvas class="viz-bg" id="viz-binary" aria-label="A field of bits flickering between 0 and 1"></canvas>
+      <div class="slide-inner binary-layout">
         <div class="layer-text">
           <div class="layer-mark"><span class="lm-n">00</span><span class="lm-tag">0 · 1</span></div>
           <h2 data-i18n="evo.l1.h">Binary</h2>
-          <p class="big" data-i18n="evo.l1.p">Every computer, at bottom, only understands two states: on and off — written as 0 and 1, bits grouped into bytes. Every program that has ever run was binary at some point.</p>
+          <p class="big" data-i18n="evo.l1.p">Only two states, on and off — 0 and 1, grouped into bytes. Every program ever run was binary at some point.</p>
+          <div class="term term--tight"><div class="bar"><i></i><i></i><i></i></div><pre><span class="m">"Hello Sui" in 8-bit ASCII</span>
+H        e        l        l        o        ·        S        u        i
+<span class="g">01001000 01100101 01101100 01101100 01101111 00100000 01010011 01110101 01101001</span></pre></div>
         </div>
-        <canvas class="viz viz--sm" id="viz-binary" aria-label="A field of bits flickering between 0 and 1"></canvas>
+        <figure class="photo-card photo-card--lg">
+          <img src="img/eniac.png" alt="A technician kneeling to replace a vacuum tube inside ENIAC, an early binary computer" loading="lazy" />
+          <figcaption>Replacing a bad tube meant checking among ENIAC's 19,000 possibilities.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -107,6 +131,12 @@
           <div class="layer-mark"><span class="lm-n">01</span><span class="lm-tag">Assembly · C</span></div>
           <h2 data-i18n="evo.l2.h">Low-level languages</h2>
           <p class="big" data-i18n="evo.l2.p">Assembly and C let you write closer to what the machine actually does. You manage memory yourself — no safety net. Fast and precise, but every detail is your responsibility.</p>
+          <div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>#include &lt;stdio.h&gt;
+
+int main() {
+    <span class="g">printf("Hello Sui");</span>
+    return 0;
+}</pre></div>
         </div>
         <canvas class="viz viz--sm" id="viz-lowlevel" aria-label="Raw memory blocks stacked by hand"></canvas>
       </div>
@@ -119,6 +149,7 @@
           <div class="layer-mark"><span class="lm-n">02</span><span class="lm-tag">Python · JavaScript · Java</span></div>
           <h2 data-i18n="evo.l3.h">High-level languages</h2>
           <p class="big" data-i18n="evo.l3.p">Languages that read closer to English than to machine code. The language handles memory, so you focus on logic. A trade: some speed and control, for a lot of speed writing it.</p>
+          <div class="term"><div class="bar"><i></i><i></i><i></i></div><pre><span class="g">print("Hello Sui")</span></pre></div>
         </div>
         <canvas class="viz viz--sm" id="viz-highlevel" aria-label="The machinery wrapped inside a smooth shell"></canvas>
       </div>
@@ -131,6 +162,10 @@
           <div class="layer-mark"><span class="lm-n">03</span><span class="lm-tag" data-i18n="evo.l4.tag">plain language</span></div>
           <h2 data-i18n="evo.l4.h">Vibe-coding</h2>
           <p class="big" data-i18n="evo.l4.p">Describe what you want in plain language; the AI writes the code — and decides the syntax, the structure, even the language. Another layer of abstraction: the same evolution, one step further.</p>
+          <div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>write a program that prints Hello Sui
+
+<span class="m"># the AI picks the language, writes it, runs it</span>
+<span class="g">Hello Sui</span></pre></div>
         </div>
         <canvas class="viz viz--sm" id="viz-vibe" aria-label="Words blooming into an assembled structure"></canvas>
       </div>
@@ -157,10 +192,16 @@
 
     <!-- 11 -->
     <section class="slide slide--divider" aria-label="Part 02">
-      <div class="slide-inner">
-        <div class="part-n">02</div>
-        <h2 data-i18n="agent.head">Building an <span class="serif">agent.</span></h2>
-        <p class="sub" data-i18n="agent.sub">A program that can reason, decide, and act — not just answer. It can call tools: search the web, run code, send a transaction.</p>
+      <div class="slide-inner layer-slide">
+        <div class="layer-text">
+          <div class="part-n">02</div>
+          <h2 data-i18n="agent.head">Building an <span class="serif">agent.</span></h2>
+          <p class="sub" data-i18n="workshop.agent">A local TypeScript program with tools for a Sui wallet, identity and memory. OpenRouter selects tools when needed; the application validates calls and displays verified results.</p>
+        </div>
+        <figure class="photo-card" style="width:100%;max-width:480px;margin:0 auto">
+          <img src="img/agent-eniac.png" alt="A robot joining a technician at ENIAC, standing in for the agent taking its place alongside early computing" loading="lazy" />
+          <figcaption>The next hands on the machine.</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -173,123 +214,47 @@
       </div>
     </section>
 
-    <!-- 13 -->
-    <section class="slide" aria-label="Choosing your stack">
-      <div class="slide-inner">
-        <h2 data-i18n="agent.stack.head">Choosing your stack</h2>
-        <div class="grid cols-2">
-          <div class="card">
-            <span class="tag" data-i18n="agent.local.tag">Open-source · local</span>
-            <h3 data-i18n="agent.local.h">Run it on your machine</h3>
-            <p data-i18n="agent.local.p">Qwen 2.5 (7B) or Hermes 3 (8B) through Ollama, 4-bit quantized (Q4_K_M GGUF) to fit in ~4.3–4.7 GB. Windows, Linux and macOS, with an 8 GB RAM floor. On Apple Silicon (M4), Metal acceleration gives 40–50+ tokens/sec.</p>
-            <div class="spec"><span>Ollama</span><span>Q4_K_M GGUF</span><span>~4.5 GB</span><span>8 GB RAM</span><span>40–50 tok/s (M4)</span></div>
-          </div>
-          <div class="card">
-            <span class="tag" data-i18n="agent.cloud.tag">Hosted · via OpenRouter</span>
-            <h3 data-i18n="agent.cloud.h">Call a model in the cloud</h3>
-            <p data-i18n="agent.cloud.p">No local compute needed. OpenRouter gives API access to dozens of models, including free tiers — a good fallback when your machine isn't powerful enough.</p>
-            <div class="spec"><span>OpenRouter</span><span>no GPU</span><span>free tiers</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
+<section class="slide " aria-label="The workshop stack"><div class="slide-inner"><div class="kicker" data-i18n="workshop.stack.label">02 / THE WORKSHOP STACK</div><h2 class="" data-i18n="workshop.stack.head">One agent. Four building blocks.</h2><div class="grid cols-2"><div class="card"><span class="tag">01 / REASONING</span><h3>OpenRouter</h3><p class="" data-i18n="workshop.router">Hosted model access for tool selection. The agent runs locally; no model download or GPU is needed.</p></div><div class="card"><span class="tag">02 / WALLET</span><h3>Sui</h3><p class="" data-i18n="workshop.chain">Create a local Ed25519 wallet and read testnet balances through the Sui SDK. Keys stay in the local application.</p></div><div class="card"><span class="tag">03 / IDENTITY</span><h3>SuiNS</h3><p class="" data-i18n="workshop.identity">Resolve a name to an address and read the wallet’s on-chain default name.</p></div><div class="card"><span class="tag">04 / MEMORY</span><h3>Walrus Memory</h3><p class="" data-i18n="workshop.memory">Use MemWal to remember and recall facts across restarts, with a configured account and delegate.</p></div></div></div></section>
 
-    <!-- 14 -->
-    <section class="slide" aria-label="Running it">
-      <div class="slide-inner">
-        <h2 data-i18n="agent.run.head">Running it</h2>
-        <div class="term">
-          <div class="bar"><i></i><i></i><i></i></div>
-          <pre><span class="c">$</span> ollama run qwen2.5:7b-instruct-q4_K_M
-<span class="m">pulling manifest... done</span>
-<span class="c">$</span> ollama run hf.co/NousResearch/Hermes-3-Llama-3.1-8B-GGUF:Q4_K_M
-<span class="g">&gt;&gt;&gt; ready</span></pre>
-        </div>
-        <div class="term">
-          <div class="bar"><i></i><i></i><i></i></div>
-          <pre><span class="c">$</span> export OPENROUTER_API_KEY=sk-...
-<span class="c">$</span> agent.model = <span class="g">"openrouter/qwen-2.5-7b-instruct"</span>
-<span class="g">&gt;&gt;&gt; connected</span></pre>
-        </div>
-      </div>
-    </section>
+<section class="slide " aria-label="Run the tutorial"><div class="slide-inner"><div class="kicker" data-i18n="workshop.setup.label">02 / SETUP</div><h2 class="" data-i18n="workshop.setup.head">Start with the tutorial.</h2><p class="sub" data-i18n="workshop.setup.intro">Install Git and Node 22.22.2 or newer. With nvm installed, run:</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>git clone https://github.com/justbiar/suibasecamp.git
+cd suibasecamp
+nvm install
+nvm use
+./setup.sh</pre></div><p class="lesson-note" data-i18n="workshop.setup.env">Edit the generated .env locally: add OPENROUTER_API_KEY, keep SUI_NETWORK=testnet, and choose a tool-capable OPENROUTER_MODEL (tutorial default: openrouter/free).</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>npm run agent
+<span class="g">/doctor</span></pre></div><p class="lesson-note" data-i18n="workshop.setup.note">Local slash commands also work without an API key. Model availability depends on the provider.</p></div></section>
 
-    <!-- 15 -->
-    <section class="slide" aria-label="Watching the agent think">
-      <div class="slide-inner">
-        <h2 data-i18n="agent.watch.head">Watching the agent think</h2>
-        <p class="sub" data-i18n="agent.watch.sub">Every step is visible: what the agent decided, which tool it called, and what came back.</p>
-        <div class="term">
-          <div class="bar"><i></i><i></i><i></i></div>
-          <pre><span class="m">&gt; user:</span>  <span data-i18n="agent.trace.user">what's my Sui balance?</span>
-<span class="m">&gt; agent:</span> <span data-i18n="agent.trace.agent1">calling</span> <span class="c">get_balance()</span>
-<span class="m">&gt; tool:</span>  <span class="g">12.4 SUI</span>
-<span class="m">&gt; agent:</span> <span data-i18n="agent.trace.agent2">You have 12.4 SUI.</span></pre>
-        </div>
-      </div>
-    </section>
+<section class="slide " aria-label="Read verified tool results"><div class="slide-inner"><h2 class="" data-i18n="workshop.trace.head">Read the result. Know the source.</h2><p class="sub" data-i18n="workshop.trace.sub">Create a wallet, then read its balance. The CLI renders verified tool data rather than model-written balances.</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>/wallet create
+/balance
 
-    <!-- 16 -->
-    <section class="slide slide--divider" aria-label="Part 03">
-      <div class="slide-inner">
-        <div class="part-n">03</div>
-        <h2 data-i18n="sui.head">Agentic wallets on <span class="serif">Sui.</span></h2>
-        <p class="sub" data-i18n="sui.sub">The agent reasons in natural language, but every action it takes is a real, signed transaction on Sui.</p>
-      </div>
-    </section>
+<span class="m"># Illustrative result — your balance will differ</span>
+Tool &gt; get_balance
+Verified tool data &gt; get_balance
+  network: testnet
+  balanceSui: <span class="g">"0.689"</span></pre></div><p class="lesson-note" data-i18n="workshop.trace.note">Use the official Testnet faucet for test tokens. The current agent supports wallet creation and reads; transfers and swaps are future work.</p></div></section>
 
-    <!-- 17 -->
-    <section class="slide" aria-label="From request to on-chain action">
-      <div class="slide-inner">
-        <h2 data-i18n="sui.flowhead">From request to on-chain action</h2>
-        <div class="pipe">
-          <span><span class="i">01</span><span data-i18n="sui.p1">plain-language request</span></span>
-          <span><span class="i">02</span><span data-i18n="sui.p2">agent reasons</span></span>
-          <span><span class="i">03</span><span data-i18n="sui.p3">proposes a transaction</span></span>
-          <span><span class="i">04</span><span data-i18n="sui.p4">you review</span></span>
-          <span class="sign"><span class="i">05</span><span data-i18n="sui.p5">you sign</span></span>
-          <span><span class="i">06</span><span data-i18n="sui.p6">on-chain</span></span>
-        </div>
-      </div>
-    </section>
+<section class="slide slide--divider" aria-label="Part 03"><div class="slide-inner"><div class="part-n">03</div><h2 class="" data-i18n="workshop.identity.head">An identity. <span class="serif">A memory.</span></h2><p class="sub" data-i18n="workshop.identity.intro">Give your agent a name on SuiNS, then teach it a fact it can recall after a restart. Sui provides chain state; Walrus Memory provides persistence.</p></div></section>
 
-    <!-- 18 -->
-    <section class="slide" aria-label="What we're building">
-      <div class="slide-inner">
-        <h2 data-i18n="sui.build.head">What we're building</h2>
-        <div class="wallet">
-          <div class="top"><span>Agentic Wallet · Sui</span><span>0x7f…a2</span></div>
-          <div class="bal">12.4 <small>SUI</small></div>
-          <div class="ask" data-i18n="sui.wallet.ask">Ask your agent…</div>
-          <div class="prop">
-            <div class="row"><span data-i18n="sui.wallet.prop">Send 2 SUI to alice.sui</span><span class="badge">REVIEWED</span></div>
-          </div>
-          <button class="confirm" type="button" data-i18n="sui.wallet.confirm">CONFIRM ON-CHAIN</button>
-        </div>
-        <p class="sub" data-i18n="sui.build.caption">The agent proposes the transaction in plain language; you stay the one who signs.</p>
-      </div>
-    </section>
+<section class="slide " aria-label="Set up SuiNS"><div class="slide-inner"><div class="kicker" data-i18n="workshop.suins.label">03 / SUINS IDENTITY</div><h2 class="" data-i18n="workshop.suins.head">A name connected to your wallet.</h2><p class="sub" data-i18n="workshop.suins.intro">Register a name on SuiNS Testnet, point it at your generated wallet address, and set that address’s default name.</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>/resolve yourname.sui
+/identity</pre></div><p class="lesson-note" data-i18n="workshop.suins.note">AGENT_SUINS_NAME only sets the expected name. It does not register a name or change the on-chain identity. An unset name returns NOT_FOUND.</p><div class="lesson-links"><a href="https://suins.io/" target="_blank" rel="noopener noreferrer">Website ↗</a><a href="https://testnet.suins.io/" target="_blank" rel="noopener noreferrer">Testnet app ↗</a><a href="https://docs.sui.io/sui-stack/suins" target="_blank" rel="noopener noreferrer">Documentation ↗</a><a href="https://github.com/justbiar/suibasecamp/blob/main/docs/SUINS.md" target="_blank" rel="noopener noreferrer">Tutorial setup ↗</a></div></div></section>
 
-    <!-- 19 -->
+<section class="slide " aria-label="Remember across restarts"><div class="slide-inner"><div class="kicker" data-i18n="workshop.walrus.label">03 / WALRUS MEMORY</div><h2 class="" data-i18n="workshop.walrus.head">Teach it. Restart it. Ask again.</h2><p class="lesson-note" data-i18n="workshop.walrus.intro">Configure MEMWAL_ACCOUNT_ID and MEMWAL_PRIVATE_KEY (an authorized delegate key) in .env. Keep MEMWAL_NAMESPACE stable and run npm run doctor.</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>/remember My workshop project is a Sui travel assistant.
+/exit
+<span class="m"># Back in your terminal</span>
+npm run agent
+<span class="m"># In the restarted agent</span>
+/recall What is my workshop project?</pre></div><p class="lesson-note" data-i18n="workshop.walrus.note">Wait for confirmed persistence before restarting. The relayer receives plaintext and handles embeddings and Seal encryption before Walrus storage. Storage lasts for funded epochs.</p><div class="lesson-links"><a href="https://walrus.xyz/" target="_blank" rel="noopener noreferrer">Website ↗</a><a href="https://staging.memory.walrus.xyz/" target="_blank" rel="noopener noreferrer">Memory · Testnet ↗</a><a href="https://docs.wal.app/docs/testnet-reference" target="_blank" rel="noopener noreferrer">Storage · Testnet ↗</a><a href="https://docs.wal.app/walrus-memory/getting-started/quick-start" target="_blank" rel="noopener noreferrer">Memory docs ↗</a><a href="https://docs.wal.app/walrus-memory/contract/delegate-key-management" target="_blank" rel="noopener noreferrer">Account &amp; delegate ↗</a></div></div></section>
+
+<section class="slide " aria-label="Join the agent directory"><div class="slide-inner"><div class="kicker" data-i18n="workshop.directory.label">03 / SHARE YOUR AGENT</div><h2 class="" data-i18n="workshop.directory.head">Give your agent a place here.</h2><p class="sub" data-i18n="workshop.directory.intro">Once wallet reads, identity and memory work, register a profile in the workshop’s shared testnet package. Registration is a separate Sui CLI transaction.</p><div class="pipe"><span>01 / Build</span><span>02 / Register</span><span>03 / Discover</span></div><p class="lesson-note" data-i18n="workshop.directory.note">Use the registration guide to align your signer with the wallet you declare. Profiles appear after indexing; a listing is not proof of a running service.</p><div class="lesson-links"><a href="/register-agent" data-i18n="workshop.register">Register your agent →</a><a href="/agents" data-i18n="workshop.directory">Explore the directory →</a></div></div></section>
+
+    <!-- 20 -->
     <section class="slide" aria-label="Sources">
       <div class="slide-inner">
         <div class="kicker" data-i18n="sources.kicker">Sources</div>
-        <div class="sources">
-          <a class="src" href="https://sui.io/" target="_blank" rel="noopener"><span class="l">Sui</span><span class="d" data-i18n="src.sui.d">The Layer-1 the wallet signs to</span><span class="u">sui.io →</span></a>
-          <a class="src" href="https://sui.io/basecamp" target="_blank" rel="noopener"><span class="l">Sui Basecamp</span><span class="d" data-i18n="src.basecamp.d">The event this workshop was given at</span><span class="u">sui.io/basecamp →</span></a>
-          <a class="src" href="https://docs.sui.io/" target="_blank" rel="noopener"><span class="l">Sui documentation</span><span class="d" data-i18n="src.docs.d">Move, transactions, the TypeScript SDK</span><span class="u">docs.sui.io →</span></a>
-          <a class="src" href="https://ollama.com/" target="_blank" rel="noopener"><span class="l">Ollama</span><span class="d" data-i18n="src.ollama.d">Runs quantized models locally</span><span class="u">ollama.com →</span></a>
-          <a class="src" href="https://huggingface.co/Qwen/Qwen2.5-7B-Instruct" target="_blank" rel="noopener"><span class="l">Qwen 2.5 (7B)</span><span class="d" data-i18n="src.qwen.d">The open-weights model used locally</span><span class="u">huggingface.co/Qwen →</span></a>
-          <a class="src" href="https://huggingface.co/NousResearch/Hermes-3-Llama-3.1-8B" target="_blank" rel="noopener"><span class="l">Hermes 3 (8B)</span><span class="d" data-i18n="src.hermes.d">The alternate local model</span><span class="u">huggingface.co/NousResearch →</span></a>
-          <a class="src" href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noopener"><span class="l">llama.cpp / GGUF</span><span class="d" data-i18n="src.gguf.d">The quantization format (Q4_K_M) that shrinks the model</span><span class="u">github.com/ggml-org/llama.cpp →</span></a>
-          <a class="src" href="https://openrouter.ai/" target="_blank" rel="noopener"><span class="l">OpenRouter</span><span class="d" data-i18n="src.openrouter.d">One API in front of many hosted models</span><span class="u">openrouter.ai →</span></a>
-          <a class="src" href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener"><span class="l">ReAct (2022)</span><span class="d" data-i18n="src.react.d">The observe → think → act loop, written up</span><span class="u">arxiv.org/abs/2210.03629 →</span></a>
-          <a class="src" href="https://threejs.org/" target="_blank" rel="noopener"><span class="l">three.js</span><span class="d" data-i18n="src.three.d">The hero animation on this deck</span><span class="u">threejs.org →</span></a>
-        </div>
+        <div class="resource-directory"><div class="resource-row"><h3>SuiNS</h3><div><a href="https://suins.io/" target="_blank" rel="noopener noreferrer">Website ↗</a><a href="https://testnet.suins.io/" target="_blank" rel="noopener noreferrer">Testnet app ↗</a><a href="https://docs.sui.io/sui-stack/suins" target="_blank" rel="noopener noreferrer">Documentation ↗</a><a href="https://github.com/justbiar/suibasecamp/blob/main/docs/SUINS.md" target="_blank" rel="noopener noreferrer">Tutorial setup ↗</a></div></div><div class="resource-row"><h3>Walrus Memory</h3><div><a href="https://memory.walrus.xyz/" target="_blank" rel="noopener noreferrer">Website / Mainnet ↗</a><a href="https://staging.memory.walrus.xyz/" target="_blank" rel="noopener noreferrer">Testnet dashboard ↗</a><a href="https://docs.wal.app/walrus-memory/getting-started/quick-start" target="_blank" rel="noopener noreferrer">Documentation ↗</a></div></div><div class="resource-row"><h3>Walrus storage</h3><div><a href="https://walrus.xyz/" target="_blank" rel="noopener noreferrer">Website ↗</a><a href="https://docs.wal.app/docs/testnet-reference" target="_blank" rel="noopener noreferrer">Testnet network ↗</a><a href="https://docs.wal.app/" target="_blank" rel="noopener noreferrer">Documentation ↗</a></div></div><div class="resource-row"><h3>Sui</h3><div><a href="https://sui.io/" target="_blank" rel="noopener noreferrer">Website ↗</a><a href="https://faucet.sui.io/" target="_blank" rel="noopener noreferrer">Testnet faucet ↗</a><a href="https://docs.sui.io/" target="_blank" rel="noopener noreferrer">Documentation ↗</a></div></div><div class="resource-row"><h3>OpenRouter</h3><div><a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer">Website ↗</a><a href="https://openrouter.ai/settings/keys" target="_blank" rel="noopener noreferrer">API keys ↗</a><a href="https://openrouter.ai/docs/quickstart" target="_blank" rel="noopener noreferrer">Documentation ↗</a></div></div></div><p class="lesson-note"><a href="https://github.com/justbiar/suibasecamp" target="_blank" rel="noopener noreferrer">Workshop tutorial ↗</a> · <a href="https://github.com/justbiar/suibasecamp/blob/main/docs/WALRUS_MEMORY.md" target="_blank" rel="noopener noreferrer">Memory restart guide ↗</a></p>
       </div>
     </section>
 
-    <!-- 20 -->
+    <!-- 21 -->
     <section class="slide slide--end" aria-label="Thank you">
       <div class="slide-inner">
         <div class="end-grid">
@@ -298,7 +263,7 @@
             <p class="sub" data-i18n="foot.blurb">Agentic Workshop — a session at Sui Basecamp 2026 by BIAR. Marina Bay Sands, Singapore · Oct 7–8.</p>
             <div class="end-links">
               <a href="https://x.com/justbiar" target="_blank" rel="noopener"><svg class="x-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>@justbiar</a>
-              <a href="Suibasecamp-Workshop.pdf" target="_blank" rel="noopener" data-i18n="foot.slides">Slides (PDF)</a>
+              <a href="https://github.com/justbiar/suibasecamp" target="_blank" rel="noopener" data-i18n="workshop.tutorial">Tutorial</a>
             </div>
           </div>
           <div class="qr-side">
@@ -333,16 +298,18 @@
 <noscript>
   <div style="max-width:680px;margin:120px auto;padding:0 24px;font-family:system-ui,sans-serif;color:#aeb6c1">
     <h1 style="color:#f2f5f8">From binary to agents</h1>
-    <p>A Sui Basecamp workshop: how software gets built across four layers — binary, low-level, high-level, vibe-coding — how an AI agent reasons and calls tools, and how an agentic wallet turns a plain-language request into a signed transaction on Sui.</p>
-    <p><a href="Suibasecamp-Workshop.pdf" style="color:#4da2ff">Download the slides</a></p>
+    <p>A Sui Basecamp workshop: how software gets built across four layers — binary, low-level, high-level, vibe-coding — how an AI agent reasons and calls tools, and how OpenRouter, SuiNS and Walrus Memory power a local Sui agent.</p>
+    <p><a href="https://github.com/justbiar/suibasecamp" style="color:#f28b57">Open the tutorial</a></p>
   </div>
 </noscript>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="i18n.js?b=3"></script>
-<script src="scene.js?b=3"></script>
-<script src="viz.js?b=3"></script>
-<script src="app.js?b=3"></script>
+<script src="i18n.js?b=8"></script>
+<script src="scene.js?b=4"></script>
+<script src="viz.js?b=4"></script>
+<script src="app.js?b=7"></script>
+<script src="poll.js?b=4"></script>
+<script src="attendance.js?b=1"></script>
 </body>
 </html>
