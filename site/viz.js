@@ -13,10 +13,10 @@
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var css = getComputedStyle(document.documentElement);
   var cvar = function (name, fb) { return (css.getPropertyValue(name) || fb).trim() || fb; };
-  var ACCENT = new THREE.Color(cvar("--accent", "#4da2ff"));
-  var ACC2 = new THREE.Color(cvar("--accent-2", "#6ee7c7"));
-  var INK = new THREE.Color(cvar("--ink", "#fbfaf9"));
-  var LINE = new THREE.Color(cvar("--line-2", "#34353f"));
+  var ACCENT = new THREE.Color(cvar("--accent", "#f28b57"));
+  var ACC2 = new THREE.Color(cvar("--accent-2", "#9cc8b5"));
+  var INK = new THREE.Color(cvar("--ink", "#fff5e9"));
+  var LINE = new THREE.Color(cvar("--line-2", "#526056"));
 
   function labelSprite(text, opts) {
     opts = opts || {};
@@ -30,7 +30,7 @@
     c.width = w; c.height = h;
     g.font = font;
     g.textAlign = "center"; g.textBaseline = "middle";
-    g.fillStyle = opts.color || "#fbfaf9";
+    g.fillStyle = opts.color || "#fff5e9";
     g.fillText(text, w / 2, h / 2 + 2);
     var tex = new THREE.CanvasTexture(c);
     tex.minFilter = THREE.LinearFilter;
@@ -119,7 +119,7 @@
       var edge = new THREE.LineSegments(new THREE.EdgesGeometry(geo),
         new THREE.LineBasicMaterial({ color: i === 3 ? ACCENT : LINE, transparent: true, opacity: 0.3 + t * 0.5 }));
       edge.position.y = y;
-      var lab = labelSprite(NAMES[i], { color: i >= 2 ? "#fbfaf9" : "#9d9db2", scale: 0.4 });
+      var lab = labelSprite(NAMES[i], { color: i >= 2 ? "#fff5e9" : "#d3c9bb", scale: 0.4 });
       lab.position.set(0, y, 0.2);
       g.add(fill, edge, lab);
     }
@@ -173,7 +173,7 @@
         new THREE.MeshBasicMaterial({ color: ACCENT })).translateX(x).translateY(y));
       tilt.add(new THREE.Mesh(new THREE.SphereGeometry(0.28, 18, 18),
         new THREE.MeshBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.09 })).translateX(x).translateY(y));
-      var lab = labelSprite(LAB[i], { color: "#fbfaf9", scale: 0.4 });
+      var lab = labelSprite(LAB[i], { color: "#fff5e9", scale: 0.4 });
       lab.position.set(x * 1.26, y * 1.26, 0.3);
       tilt.add(lab);
     }

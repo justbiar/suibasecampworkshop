@@ -12,9 +12,9 @@
 
   var css = getComputedStyle(document.documentElement);
   var cvar = function (n, fb) { return (css.getPropertyValue(n) || fb).trim() || fb; };
-  var ACCENT = new THREE.Color(cvar("--accent", "#4da2ff"));
-  var ACC2 = new THREE.Color(cvar("--accent-2", "#6ee7c7"));
-  var DIM = new THREE.Color("#1e2a44");
+  var ACCENT = new THREE.Color(cvar("--accent", "#f28b57"));
+  var ACC2 = new THREE.Color(cvar("--accent-2", "#9cc8b5"));
+  var DIM = new THREE.Color("#526056");
 
   var renderer;
   try {
@@ -23,7 +23,7 @@
   renderer.setClearColor(0x000000, 0);
 
   var scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x05060a, 0.05);
+  scene.fog = new THREE.FogExp2(0x0b100f, 0.05);
 
   var camera = new THREE.PerspectiveCamera(50, 1, 0.1, 120);
   camera.position.set(0, 2.4, 15);
@@ -49,7 +49,7 @@
       new THREE.LineBasicMaterial({ color: DIM, transparent: true, opacity: 0.5 })
     );
     edge.position.set(x, h / 2, z);
-    var fill = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0x05060a, transparent: true, opacity: 0.55 }));
+    var fill = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0x0b100f, transparent: true, opacity: 0.55 }));
     fill.position.copy(edge.position);
     city.add(fill, edge);
     // a lit window band near the top of some towers

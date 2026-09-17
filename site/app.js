@@ -1,5 +1,5 @@
 /* Slide-deck controller: arrow keys, on-screen arrows, wheel, swipe, deep links.
-   Plus language switch, show-of-hands toggles, and the self-referential QR. */
+   Plus language switch, audience counts, and the self-referential QR. */
 
 (function () {
   "use strict";
@@ -136,17 +136,10 @@
     window.applyLang(window.initialLang ? window.initialLang() : "en");
   }
 
-  /* show of hands */
-  document.querySelectorAll(".hand").forEach(function (h) {
-    h.addEventListener("click", function () {
-      h.setAttribute("aria-pressed", String(h.getAttribute("aria-pressed") !== "true"));
-    });
-  });
-
   /* self-referential QR */
   var qrEl = document.getElementById("qr");
   var qrUrlEl = document.getElementById("qrUrl");
-  var url = location.href.split("#")[0].split("?")[0];
+  var url = "https://suibasecampworkshop.pages.dev/?join=basecamp-2026";
   if (qrUrlEl) qrUrlEl.textContent = url.replace(/^https?:\/\//, "");
   if (qrEl && typeof window.QRCode === "function") {
     try {

@@ -3,3 +3,15 @@ compatibility_date = "2026-09-10"
 pages_build_output_dir = "./site"
 
 [env.production]
+
+[[d1_databases]]
+binding = "ATTENDANCE"
+database_name = "suibasecamp-attendance"
+database_id = "c3864363-2446-4126-af7a-bcec1d0cb2fa"
+migrations_dir = "migrations"
+
+[[env.production.d1_databases]]
+binding = "ATTENDANCE"
+database_name = "suibasecamp-attendance"
+database_id = "c3864363-2446-4126-af7a-bcec1d0cb2fa"
+migrations_dir = "migrations"
