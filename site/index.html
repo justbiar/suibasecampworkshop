@@ -216,11 +216,17 @@ int main() {
 
 <section class="slide " aria-label="The workshop stack"><div class="slide-inner"><div class="kicker" data-i18n="workshop.stack.label">02 / THE WORKSHOP STACK</div><h2 class="" data-i18n="workshop.stack.head">One agent. Four building blocks.</h2><div class="grid cols-2"><div class="card"><span class="tag">01 / REASONING</span><h3>OpenRouter</h3><p class="" data-i18n="workshop.router">Hosted model access for tool selection. The agent runs locally; no model download or GPU is needed.</p></div><div class="card"><span class="tag">02 / WALLET</span><h3>Sui</h3><p class="" data-i18n="workshop.chain">Create a local Ed25519 wallet and read testnet balances through the Sui SDK. Keys stay in the local application.</p></div><div class="card"><span class="tag">03 / IDENTITY</span><h3>SuiNS</h3><p class="" data-i18n="workshop.identity">Resolve a name to an address and read the wallet’s on-chain default name.</p></div><div class="card"><span class="tag">04 / MEMORY</span><h3>Walrus Memory</h3><p class="" data-i18n="workshop.memory">Use MemWal to remember and recall facts across restarts, with a configured account and delegate.</p></div></div></div></section>
 
-<section class="slide " aria-label="Run the tutorial"><div class="slide-inner"><div class="kicker" data-i18n="workshop.setup.label">02 / SETUP</div><h2 class="" data-i18n="workshop.setup.head">Start with the tutorial.</h2><p class="sub" data-i18n="workshop.setup.intro">Install Git and Node 22.22.2 or newer. With nvm installed, run:</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>git clone https://github.com/justbiar/suibasecamp.git
-cd suibasecamp
-nvm install
-nvm use
-./setup.sh</pre></div><p class="lesson-note" data-i18n="workshop.setup.env">Edit the generated .env locally: add OPENROUTER_API_KEY, keep SUI_NETWORK=testnet, and choose a tool-capable OPENROUTER_MODEL (tutorial default: openrouter/free).</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>npm run agent
+<section class="slide " aria-label="Run the tutorial"><div class="slide-inner"><div class="kicker" data-i18n="workshop.setup.label">02 / SETUP</div><h2 class="" data-i18n="workshop.setup.head">Start with the tutorial.</h2><p class="sub" data-i18n="workshop.setup.intro">macOS / Linux / WSL · Install Git and nvm first. Use Node 22.22.2 or newer; Node 20 will fail with EBADENGINE.</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>git clone https://github.com/justbiar/suibasecamp.git &amp;&amp; cd suibasecamp
+nvm install 22 &amp;&amp; nvm use 22 &amp;&amp; node -v
+node scripts/check-node.mjs &amp;&amp; ./setup.sh</pre></div><p class="lesson-note" data-i18n="workshop.setup.verify">Check node -v before installing: it must show v22.22.2 or a newer 22.x. setup.sh checks the version, installs locked dependencies with npm ci, and builds the agent.</p>
+<details class="setup-help"><summary data-i18n="workshop.setup.help">First-time setup or an installation error?</summary>
+<p data-i18n="workshop.setup.nvm">nvm: command not found? Install nvm using the official guide below, reopen your terminal, then run command -v nvm. Continue only when it prints nvm.</p>
+<div class="lesson-links"><a href="https://github.com/nvm-sh/nvm#installing-and-updating" target="_blank" rel="noopener noreferrer">Install nvm ↗</a><a href="https://nodejs.org/en/download" target="_blank" rel="noopener noreferrer">Node.js downloads ↗</a><a href="https://github.com/nvm-sh/nvm#installing-and-updating" target="_blank" rel="noopener noreferrer">macOS / Linux / WSL guide ↗</a></div>
+<p data-i18n="workshop.setup.repair">Already cloned, or seeing EBADENGINE? Stay inside the existing suibasecamp folder and run these commands in the same terminal. Do not clone again or bypass the engine check.</p>
+<div class="term"><pre>nvm install 22 &amp;&amp; nvm use 22 &amp;&amp; node -v
+node scripts/check-node.mjs &amp;&amp; ./setup.sh</pre></div>
+<p data-i18n="workshop.setup.shell">Run nvm use 22 again in each new terminal before npm commands. On Windows, use WSL for this Bash setup. Without nvm, install a current Node 22.x from the official downloads, reopen the terminal, and verify node -v before running setup.sh.</p>
+</details><p class="lesson-note" data-i18n="workshop.setup.env">Edit the generated .env locally: add your OPENROUTER_API_KEY. Leave the rest as generated — SUI_NETWORK=testnet and OPENROUTER_MODEL=openrouter/free work as they are.</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>npm run agent
 <span class="g">/doctor</span></pre></div><p class="lesson-note" data-i18n="workshop.setup.note">Local slash commands also work without an API key. Model availability depends on the provider.</p></div></section>
 
 <section class="slide " aria-label="Read verified tool results"><div class="slide-inner"><h2 class="" data-i18n="workshop.trace.head">Read the result. Know the source.</h2><p class="sub" data-i18n="workshop.trace.sub">Create a wallet, then read its balance. The CLI renders verified tool data rather than model-written balances.</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>/wallet create
@@ -305,7 +311,7 @@ npm run agent
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="i18n.js?b=8"></script>
+<script src="i18n.js?b=9"></script>
 <script src="scene.js?b=4"></script>
 <script src="viz.js?b=4"></script>
 <script src="app.js?b=7"></script>

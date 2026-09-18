@@ -4,6 +4,11 @@
 
 window.I18N = {
   zh: {
+    "workshop.setup.shell": "每次打开新终端，先运行 nvm use 22，再执行 npm 命令。Windows 请在 WSL 中运行 Bash 安装。若不使用 nvm，请从官网下载当前 Node 22.x，重新打开终端，确认 node -v 后运行 setup.sh。",
+    "workshop.setup.repair": "已经克隆，或遇到 EBADENGINE？在已有的 suibasecamp 文件夹内，用同一终端运行以下命令。无需再次克隆，也不要绕过版本检查。",
+    "workshop.setup.nvm": "出现 nvm: command not found？通过下方官方指南安装 nvm，重新打开终端，再运行 command -v nvm。确认输出 nvm 后继续。",
+    "workshop.setup.help": "首次安装或遇到安装错误？",
+    "workshop.setup.verify": "安装前检查 node -v：应显示 v22.22.2 或更新的 22.x。setup.sh 会检查版本，使用 npm ci 安装锁定依赖并构建智能体。",
     "poll.manual": "手动总人数 · 保存在此浏览器中",
     "poll.auto": "使用二维码人数",
     "attendance.loading": "正在连接参与人数…",
@@ -30,8 +35,8 @@ window.I18N = {
     "workshop.memory": "配置账户和委托密钥后，通过 MemWal 保存事实并在重启后检索。",
     "workshop.setup.label": "02 / 安装",
     "workshop.setup.head": "从教程开始。",
-    "workshop.setup.intro": "安装 Git 和 Node 22.22.2 或更高版本。已安装 nvm 时运行：",
-    "workshop.setup.env": "在本地编辑生成的 .env：添加 OPENROUTER_API_KEY，保留 SUI_NETWORK=testnet，选择支持工具调用的 OPENROUTER_MODEL（教程默认：openrouter/free）。",
+    "workshop.setup.intro": "macOS / Linux / WSL · 先安装 Git 和 nvm。需要 Node 22.22.2 或更新版本；Node 20 会出现 EBADENGINE。",
+    "workshop.setup.env": "在本地编辑生成的 .env：添加你的 OPENROUTER_API_KEY。其余保持生成时的默认值即可——SUI_NETWORK=testnet 和 OPENROUTER_MODEL=openrouter/free 无需改动。",
     "workshop.setup.note": "无需 API 密钥也可使用本地斜杠命令。模型可用性取决于提供商。",
     "workshop.trace.head": "读结果，也要看来源。",
     "workshop.trace.sub": "先创建钱包，再查询余额。CLI 展示经过验证的工具数据，而不是模型编写的余额。",
@@ -105,6 +110,11 @@ window.I18N = {
   },
 
   ms: {
+    "workshop.setup.shell": "Dalam setiap terminal baharu, jalankan nvm use 22 sebelum arahan npm. Di Windows, gunakan WSL untuk setup Bash ini. Tanpa nvm, pasang Node 22.x terkini melalui muat turun rasmi, buka semula terminal dan semak node -v sebelum setup.sh.",
+    "workshop.setup.repair": "Sudah klon atau mendapat EBADENGINE? Jalankan arahan berikut dalam folder suibasecamp sedia ada, di terminal yang sama. Jangan klon semula atau langkau semakan versi.",
+    "workshop.setup.nvm": "nvm: command not found? Pasang nvm melalui panduan rasmi di bawah, buka semula terminal dan jalankan command -v nvm. Teruskan apabila output ialah nvm.",
+    "workshop.setup.help": "Persediaan pertama atau ralat pemasangan?",
+    "workshop.setup.verify": "Semak node -v sebelum pemasangan: mesti v22.22.2 atau 22.x yang lebih baharu. setup.sh menyemak versi, memasang dependensi terkunci dengan npm ci dan membina ejen.",
     "poll.manual": "Jumlah manual · disimpan dalam pelayar ini",
     "poll.auto": "Guna kiraan QR",
     "attendance.loading": "Menyambung kiraan peserta…",
@@ -131,8 +141,8 @@ window.I18N = {
     "workshop.memory": "Gunakan MemWal untuk menyimpan dan mengingat fakta selepas mula semula, dengan akaun dan delegat yang dikonfigurasi.",
     "workshop.setup.label": "02 / PERSEDIAAN",
     "workshop.setup.head": "Mulakan dengan tutorial.",
-    "workshop.setup.intro": "Pasang Git dan Node 22.22.2 atau lebih baharu. Dengan nvm dipasang, jalankan:",
-    "workshop.setup.env": "Edit .env yang dijana secara setempat: tambah OPENROUTER_API_KEY, kekalkan SUI_NETWORK=testnet, dan pilih OPENROUTER_MODEL yang menyokong alat (lalai tutorial: openrouter/free).",
+    "workshop.setup.intro": "macOS / Linux / WSL · Pasang Git dan nvm dahulu. Gunakan Node 22.22.2 atau lebih baharu; Node 20 menyebabkan EBADENGINE.",
+    "workshop.setup.env": "Edit .env yang dijana secara setempat: tambah OPENROUTER_API_KEY anda. Biarkan yang lain seperti dijana — SUI_NETWORK=testnet dan OPENROUTER_MODEL=openrouter/free berfungsi sedia ada.",
     "workshop.setup.note": "Arahan slash setempat juga berfungsi tanpa kunci API. Ketersediaan model bergantung pada penyedia.",
     "workshop.trace.head": "Baca hasil. Kenali sumbernya.",
     "workshop.trace.sub": "Cipta dompet, kemudian baca bakinya. CLI memaparkan data alat yang disahkan dan bukannya baki yang ditulis oleh model.",
