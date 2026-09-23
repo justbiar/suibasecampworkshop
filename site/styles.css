@@ -422,6 +422,11 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.03em; line-height: 1.08; margi
 .resource-row > div { display: flex; flex-wrap: wrap; gap: 9px 20px; }
 .resource-row a { font-size: 12px; color: var(--accent-2); }
 .lesson-links a { font-size: 12px; }
+
+/* The workshop runs on testnet; mainnet costs real SUI, so it must never read as the default. */
+.lesson-links a.link-primary, .resource-row a.link-primary { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+.lesson-links a.link-muted, .resource-row a.link-muted { color: var(--ink-3); opacity: .72; }
+
 @media (max-width: 820px) { .audience-poll { grid-template-columns: 1fr; gap: 22px; } .resource-row { grid-template-columns: 1fr; padding: 16px; } }
 @media (prefers-reduced-motion: reduce) { .poll-track span { transition: none; } }
 .poll-inputs .poll-total { padding-bottom: 12px; border-bottom: 1px solid var(--line-2); color: var(--ink); font-weight: 600; }
