@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Register your agent — Sui Basecamp</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Register your agent · Sui Basecamp</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -16,7 +16,7 @@
 
 <div class="layer-mark"><span class="lm-n">02</span><span class="lm-tag">Register</span></div><h2>Register with the common package</h2>
 <ul class="step-points">
-  <li>The wallet you register must be your active signer — the module checks it against the transaction sender.</li>
+  <li>The wallet you register must be your active signer. The module checks it against the transaction sender.</li>
   <li>Swap in your own metadata below. Keep the package ID unchanged.</li>
   <li>Spends real testnet gas. Only declare capabilities your agent actually implements.</li>
 </ul>
@@ -34,21 +34,21 @@ sui client call \
 <ul class="step-points">
   <li>A wallet/signer mismatch aborts registration. Failed transactions may still consume testnet gas.</li>
   <li>Save the created AgentProfileV2 object ID.</li>
-  <li>Don't re-run this just because the page hasn't refreshed — that creates a duplicate profile.</li>
+  <li>Don't re-run this just because the page hasn't refreshed. That creates a duplicate profile.</li>
 </ul>
 
 <div class="layer-mark"><span class="lm-n">03</span><span class="lm-tag">Confirm</span></div><h2>Find your agent</h2>
 <ul class="step-points">
   <li>Allow indexing time, plus up to a minute for the directory cache.</li>
   <li>Open the <a href="/agents">agent directory</a> and select Refresh.</li>
-  <li>Nothing to configure centrally — a profile in the shared package just appears.</li>
+  <li>Nothing to configure centrally. A profile in the shared package just appears.</li>
 </ul>
 
 <h2>What your registration means</h2>
 <div class="fact-grid">
-  <div><strong>Wallet — proven</strong><p>The module rejects any wallet that didn't sign the registration transaction.</p></div>
-  <div><strong>Everything else — a claim</strong><p>SuiNS name, endpoint, skills: registrant-supplied, not verified on-chain.</p></div>
+  <div><strong>Wallet: proven</strong><p>The module rejects any wallet that didn't sign the registration transaction.</p></div>
+  <div><strong>Everything else: a claim</strong><p>SuiNS name, endpoint, skills: registrant-supplied, not verified on-chain.</p></div>
   <div><strong><code>local://</code> ≠ live service</strong><p>Describes a local process. This directory never tests agent availability.</p></div>
-  <div><strong>Fork the package, vanish</strong><p>Your own copy gets a different type identity — it won't show up here.</p></div>
+  <div><strong>Fork the package, vanish</strong><p>Your own copy gets a different type identity, so it won't show up here.</p></div>
 </div>
 </main></body></html>

@@ -37,7 +37,7 @@ window.I18N = {
     "workshop.setup.head": "从教程开始。",
     "workshop.setup.intro": "macOS / Linux / WSL · 先安装 Git 和 nvm。需要 Node 22.22.2 或更新版本；Node 20 会出现 EBADENGINE。",
     "workshop.setup.env": "在 OpenRouter 上创建密钥，然后打开生成的 .env，粘贴到 OPENROUTER_API_KEY= 之后。其余每一行都保持生成时的默认值。",
-    "workshop.setup.envsave": "保存并退出：Ctrl+O、回车，然后 Ctrl+X。密钥只保存在你的电脑上——不会被提交，也不会发送到 OpenRouter 以外的任何地方。",
+    "workshop.setup.envsave": "保存并退出：Ctrl+O、回车，然后 Ctrl+X。密钥只保存在你的电脑上，不会被提交，也不会发送到 OpenRouter 以外的任何地方。",
     "workshop.key.head": "填入密钥。运行智能体。",
     "workshop.setup.note": "无需 API 密钥也可使用本地斜杠命令。模型可用性取决于提供商。",
     "workshop.trace.head": "读结果，也要看来源。",
@@ -70,7 +70,7 @@ window.I18N = {
 
     "hero.eyebrow": "Sui Basecamp 2026 · 新加坡滨海湾金沙 · 10 月 7–8 日",
     "hero.title": "Agentic Workshop",
-    "hero.tagline": "从二进制到智能体——软件是怎样构建的，以及 AI 会把它带向何方。",
+    "hero.tagline": "从二进制到智能体。软件是怎样构建的，以及 AI 会把它带向何方。",
 
     "hands.kicker": "开始之前",
     "hands.head": "先举个手。",
@@ -80,19 +80,19 @@ window.I18N = {
     "hands.h3": "我会一门低级语言（C、汇编……）",
 
     "evo.head": "软件的<span class=\"serif\">演化。</span>",
-    "evo.sub": "软件的每一层都建立在它下面的一层之上。这里把四层叠起来——从底部的机器，到顶端的自然语言。逐个展开。",
+    "evo.sub": "软件的每一层都建立在它下面的一层之上。这里把四层叠起来，从底部的机器，到顶端的自然语言。逐个展开。",
     "evo.l1.h": "二进制",
-    "evo.l1.p": "每台计算机归根结底只懂两种状态：开和关——写作 0 和 1，比特再组成字节。凡是运行过的程序，某一刻都是二进制。",
+    "evo.l1.p": "每台计算机归根结底只懂两种状态：开和关，写作 0 和 1，比特再组成字节。凡是运行过的程序，某一刻都是二进制。",
     "evo.l2.h": "低级语言",
-    "evo.l2.p": "汇编和 C 让你写得更贴近机器真正在做的事。内存要你自己管——没有安全网。快而精确，但每一个细节都是你的责任。",
+    "evo.l2.p": "汇编和 C 让你写得更贴近机器真正在做的事。内存要你自己管，没有安全网。快而精确，但每一个细节都是你的责任。",
     "evo.l3.h": "高级语言",
     "evo.l3.p": "读起来更像英语、而不像机器码的语言。内存由语言打理，你专注于逻辑。一种取舍：让出一些运行速度和控制权，换来写得快很多。",
     "evo.l4.h": "Vibe-coding（凭感觉编程）",
     "evo.l4.tag": "自然语言",
-    "evo.l4.p": "用自然语言描述你想要什么，AI 来写代码——语法、结构、甚至用哪门语言，都由它决定。又一层抽象：同一条演化线，再往前一步。",
-    "evo.closing": "每一层都把它下面的一层藏起来。Vibe-coding 不取代其他层——它坐在它们之上，就像 Python 坐在 C 之上，C 坐在二进制之上。",
+    "evo.l4.p": "用自然语言描述你想要什么，AI 来写代码，语法、结构、甚至用哪门语言，都由它决定。又一层抽象：同一条演化线，再往前一步。",
+    "evo.closing": "每一层都把它下面的一层藏起来。Vibe-coding 不取代其他层，它坐在它们之上，就像 Python 坐在 C 之上，C 坐在二进制之上。",
     "evo.quote": "“也许十年后，跟 AI 说话也会显得同样过时。也许我们只需要想一下，产品就出现了。”",
-    "evo.quote.cite": "——关于这条演化线可能通向哪里",
+    "evo.quote.cite": "关于这条演化线可能通向哪里",
 
     "agent.head": "构建一个<span class=\"serif\">智能体。</span>",
     "loop.caption": "……然后再次观察",
@@ -107,8 +107,8 @@ window.I18N = {
 
     "qr.head": "把它带走。",
 
-    "foot.blurb": "Agentic Workshop——BIAR 在 Sui Basecamp 2026 的一场分享。新加坡滨海湾金沙 · 10 月 7–8 日。",
-    "foot.thanks": "谢谢——有问题吗？动手做吧。"
+    "foot.blurb": "Agentic Workshop，BIAR 在 Sui Basecamp 2026 的一场分享。新加坡滨海湾金沙 · 10 月 7–8 日。",
+    "foot.thanks": "谢谢。有问题吗？动手做吧。"
   },
 
   ms: {
@@ -145,7 +145,7 @@ window.I18N = {
     "workshop.setup.head": "Mulakan dengan tutorial.",
     "workshop.setup.intro": "macOS / Linux / WSL · Pasang Git dan nvm dahulu. Gunakan Node 22.22.2 atau lebih baharu; Node 20 menyebabkan EBADENGINE.",
     "workshop.setup.env": "Cipta kunci di OpenRouter, kemudian buka .env yang dijana dan tampalkannya selepas OPENROUTER_API_KEY=. Biarkan setiap baris lain seperti dijana.",
-    "workshop.setup.envsave": "Simpan dan tutup: Ctrl+O, Enter, kemudian Ctrl+X. Kunci itu kekal pada mesin anda — ia tidak pernah dikomit atau dihantar ke mana-mana selain OpenRouter.",
+    "workshop.setup.envsave": "Simpan dan tutup: Ctrl+O, Enter, kemudian Ctrl+X. Kunci itu kekal pada mesin anda. Ia tidak pernah dikomit atau dihantar ke mana-mana selain OpenRouter.",
     "workshop.key.head": "Tambah kunci anda. Jalankan ejen.",
     "workshop.setup.note": "Arahan slash setempat juga berfungsi tanpa kunci API. Ketersediaan model bergantung pada penyedia.",
     "workshop.trace.head": "Baca hasil. Kenali sumbernya.",
@@ -178,7 +178,7 @@ window.I18N = {
 
     "hero.eyebrow": "Sui Basecamp 2026 · Marina Bay Sands, Singapura · 7–8 Okt",
     "hero.title": "Agentic Workshop",
-    "hero.tagline": "Daripada binari kepada ejen — cara perisian dibina, dan ke mana AI membawanya seterusnya.",
+    "hero.tagline": "Daripada binari kepada ejen. Cara perisian dibina, dan ke mana AI membawanya seterusnya.",
 
     "hands.kicker": "Sebelum kita mula",
     "hands.head": "Angkat tangan sebentar.",
@@ -188,19 +188,19 @@ window.I18N = {
     "hands.h3": "Saya tahu bahasa peringkat rendah (C, Assembly…)",
 
     "evo.head": "Evolusi <span class=\"serif\">perisian.</span>",
-    "evo.sub": "Setiap lapisan perisian dibina atas lapisan di bawahnya. Ini empat daripadanya, bertindan — daripada mesin di bawah hingga bahasa biasa di atas. Buka satu per satu.",
+    "evo.sub": "Setiap lapisan perisian dibina atas lapisan di bawahnya. Ini empat daripadanya, bertindan daripada mesin di bawah hingga bahasa biasa di atas. Buka satu per satu.",
     "evo.l1.h": "Binari",
-    "evo.l1.p": "Setiap komputer, pada dasarnya, hanya memahami dua keadaan: hidup dan mati — ditulis sebagai 0 dan 1, bit dikumpulkan menjadi bait. Setiap program yang pernah berjalan adalah binari pada satu ketika.",
+    "evo.l1.p": "Setiap komputer, pada dasarnya, hanya memahami dua keadaan: hidup dan mati, ditulis sebagai 0 dan 1, bit dikumpulkan menjadi bait. Setiap program yang pernah berjalan adalah binari pada satu ketika.",
     "evo.l2.h": "Bahasa peringkat rendah",
-    "evo.l2.p": "Assembly dan C membolehkan anda menulis lebih hampir dengan apa yang mesin benar-benar lakukan. Anda menguruskan memori sendiri — tiada jaring keselamatan. Pantas dan tepat, tetapi setiap butiran adalah tanggungjawab anda.",
+    "evo.l2.p": "Assembly dan C membolehkan anda menulis lebih hampir dengan apa yang mesin benar-benar lakukan. Anda menguruskan memori sendiri, tanpa jaring keselamatan. Pantas dan tepat, tetapi setiap butiran adalah tanggungjawab anda.",
     "evo.l3.h": "Bahasa peringkat tinggi",
     "evo.l3.p": "Bahasa yang dibaca lebih hampir dengan bahasa Inggeris berbanding kod mesin. Bahasa itu menguruskan memori, jadi anda fokus pada logik. Satu tukar ganti: sedikit kelajuan dan kawalan, untuk kelajuan menulisnya yang jauh lebih tinggi.",
     "evo.l4.h": "Vibe-coding",
     "evo.l4.tag": "bahasa biasa",
-    "evo.l4.p": "Gambarkan apa yang anda mahu dalam bahasa biasa; AI menulis kodnya — dan menentukan sintaks, struktur, malah bahasanya. Satu lagi lapisan abstraksi: evolusi yang sama, satu langkah lagi ke hadapan.",
-    "evo.closing": "Setiap lapisan menyembunyikan lapisan di bawahnya. Vibe-coding tidak menggantikan yang lain — ia duduk di atasnya, sepertimana Python duduk di atas C, dan C duduk di atas binari.",
+    "evo.l4.p": "Gambarkan apa yang anda mahu dalam bahasa biasa; AI menulis kodnya, dan menentukan sintaks, struktur, malah bahasanya. Satu lagi lapisan abstraksi: evolusi yang sama, satu langkah lagi ke hadapan.",
+    "evo.closing": "Setiap lapisan menyembunyikan lapisan di bawahnya. Vibe-coding tidak menggantikan yang lain. Ia duduk di atasnya, sepertimana Python duduk di atas C, dan C duduk di atas binari.",
     "evo.quote": "“Mungkin dalam sepuluh tahun, bercakap dengan AI pun akan terasa lapuk. Mungkin kita hanya berfikir, dan sebuah produk muncul.”",
-    "evo.quote.cite": "— tentang ke mana evolusi ini mungkin menuju",
+    "evo.quote.cite": "Tentang ke mana evolusi ini mungkin menuju",
 
     "agent.head": "Membina sebuah <span class=\"serif\">ejen.</span>",
     "loop.caption": "…kemudian perhati semula",
@@ -215,8 +215,8 @@ window.I18N = {
 
     "qr.head": "Bawa ia bersama anda.",
 
-    "foot.blurb": "Agentic Workshop — sesi oleh BIAR di Sui Basecamp 2026. Marina Bay Sands, Singapura · 7–8 Okt.",
-    "foot.thanks": "Terima kasih — soalan? Mari bina."
+    "foot.blurb": "Agentic Workshop, sesi oleh BIAR di Sui Basecamp 2026. Marina Bay Sands, Singapura · 7–8 Okt.",
+    "foot.thanks": "Terima kasih. Soalan? Mari bina."
   }
 };
 
