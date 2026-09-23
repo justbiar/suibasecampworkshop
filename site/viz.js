@@ -192,7 +192,7 @@
     };
   });
 
-  /* ---- scene: BINARY — a lattice of bits, flickering on and off ---- */
+  /* ---- scene: BINARY, a lattice of bits, flickering on and off ---- */
   mount("viz-binary", function (scene, camera) {
     camera.position.set(0, 0, 7);
     var g = new THREE.Group();
@@ -225,7 +225,7 @@
     };
   });
 
-  /* ---- scene: LOW-LEVEL — a stack you place by hand, one block always loose ---- */
+  /* ---- scene: LOW-LEVEL, a stack you place by hand, one block always loose ---- */
   mount("viz-lowlevel", function (scene, camera) {
     camera.position.set(0, 0.4, 7);
     var g = new THREE.Group();
@@ -255,7 +255,7 @@
     };
   });
 
-  /* ---- scene: HIGH-LEVEL — the machinery, wrapped in a smooth shell ---- */
+  /* ---- scene: HIGH-LEVEL, the machinery, wrapped in a smooth shell ---- */
   mount("viz-highlevel", function (scene, camera) {
     camera.position.set(0, 0, 6.5);
     var g = new THREE.Group();
@@ -285,7 +285,7 @@
     };
   });
 
-  /* ---- scene: VIBE-CODING — words stream in, a structure assembles ---- */
+  /* ---- scene: VIBE-CODING, words stream in, a structure assembles ---- */
   mount("viz-vibe", function (scene, camera) {
     camera.position.set(0, 0, 7);
     var g = new THREE.Group();

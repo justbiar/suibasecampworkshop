@@ -153,7 +153,20 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.03em; line-height: 1.08; margi
 .photo-card figcaption { color: var(--ink-3); font: 11px var(--mono); padding: 10px 4px 2px; }
 .term--tight { margin-top: 0; font-size: 12px; }
 .term--tight pre { padding: 12px 14px; }
-.viz--sm { height: min(42vh, 340px); }
+/* .viz is declared later in this file, so these modifiers need the extra class to win. */
+.viz.viz--sm { height: min(42vh, 340px); }
+.viz.viz--xs { height: min(26vh, 210px); }
+
+/* Control and responsibility arrive together at this level; the bars are near-equal on purpose. */
+.layer-visual { display: grid; gap: 20px; align-content: center; }
+.tradeoff { margin: 0; }
+.tradeoff svg { display: block; width: 100%; height: auto; overflow: visible; }
+.tf-cap { fill: var(--accent); font: 500 8px var(--mono); letter-spacing: .16em; }
+.tf-lbl { fill: var(--ink-3); font: 500 9px var(--mono); letter-spacing: .12em; }
+.tf-track { fill: var(--bg-3); }
+.tf-fill--a { fill: var(--accent-2); }
+.tf-fill--b { fill: var(--accent); }
+.tradeoff figcaption { color: var(--ink-3); font: 11px var(--mono); padding-top: 14px; line-height: 1.6; }
 
 /* binary slide: three.js field pushed to a full-bleed backdrop, content stays light on top */
 .slide--binary { overflow: hidden; }
@@ -441,3 +454,14 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.03em; line-height: 1.08; margi
 .setup-help summary { color: var(--accent); cursor: pointer; font-weight: 600; }
 .setup-help p { margin: 12px 0; }
 .setup-help .lesson-links { margin-top: 12px; }
+
+/* Layer slides pair a paragraph with a code block; at 30px the Malay copy ran past the fold. */
+.layer-text .big { font-size: 27px; line-height: 1.32; }
+.layer-text h2 { margin-bottom: 14px; }
+.layer-mark { margin-bottom: 12px; }
+
+/* The poll slide runs longest in Malay, where the heading and intro each take an extra line. */
+.slide--poll .kicker { margin-bottom: 18px; }
+.slide--poll h2 { margin-bottom: 14px; }
+.slide--poll .audience-poll { margin-top: 18px; }
+.slide--poll #poll-note { margin-top: 10px; }

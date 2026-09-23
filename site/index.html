@@ -67,7 +67,7 @@
     </section>
 
     <!-- 03 -->
-    <section class="slide" aria-label="Before we start">
+    <section class="slide slide--poll" aria-label="Before we start">
       <div class="slide-inner">
         <div class="kicker" data-i18n="hands.kicker">Before we start</div>
         <h2 data-i18n="hands.head">A quick show of hands.</h2>
@@ -84,9 +84,9 @@
           </div>
           <figure class="poll-chart" aria-labelledby="poll-caption">
             <figcaption id="poll-caption" data-i18n="poll.caption">Percentage of participants</figcaption>
-            <div class="poll-chart-row"><div><span>Vibe-coding</span><output for="poll-vibe poll-total" id="count-vibe">—</output></div><div class="poll-track"><span id="bar-vibe"></span></div></div>
-            <div class="poll-chart-row"><div><span data-i18n="poll.high">High-level languages</span><output for="poll-high poll-total" id="count-high">—</output></div><div class="poll-track"><span id="bar-high"></span></div></div>
-            <div class="poll-chart-row"><div><span data-i18n="poll.low">Low-level languages</span><output for="poll-low poll-total" id="count-low">—</output></div><div class="poll-track"><span id="bar-low"></span></div></div>
+            <div class="poll-chart-row"><div><span>Vibe-coding</span><output for="poll-vibe poll-total" id="count-vibe">·</output></div><div class="poll-track"><span id="bar-vibe"></span></div></div>
+            <div class="poll-chart-row"><div><span data-i18n="poll.high">High-level languages</span><output for="poll-high poll-total" id="count-high">·</output></div><div class="poll-track"><span id="bar-high"></span></div></div>
+            <div class="poll-chart-row"><div><span data-i18n="poll.low">Low-level languages</span><output for="poll-low poll-total" id="count-low">·</output></div><div class="poll-track"><span id="bar-low"></span></div></div>
             <div class="poll-axis" aria-hidden="true"><span>0%</span><span id="poll-max">100%</span></div>
             <p class="lesson-note" id="poll-empty" data-i18n="poll.empty">Scan the QR or enter a total to calculate percentages.</p>
           </figure>
@@ -125,20 +125,33 @@ H        e        l        l        o        ·        S        u        i
     </section>
 
     <!-- 06 -->
-    <section class="slide" aria-label="Low-level languages">
+    <section class="slide slide--lowlevel" aria-label="Low-level languages">
       <div class="slide-inner layer-slide">
         <div class="layer-text">
           <div class="layer-mark"><span class="lm-n">01</span><span class="lm-tag">Assembly · C</span></div>
           <h2 data-i18n="evo.l2.h">Low-level languages</h2>
-          <p class="big" data-i18n="evo.l2.p">Assembly and C let you write closer to what the machine actually does. You manage memory yourself, with no safety net. Fast and precise, but every detail is your responsibility.</p>
-          <div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>#include &lt;stdio.h&gt;
-
+          <p class="big" data-i18n="evo.l2.p">Assembly and C let you write closer to what the machine actually does. Fast and precise, but you manage memory yourself, with no safety net.</p>
+          <div class="term term--tight"><div class="bar"><i></i><i></i><i></i></div><pre>#include &lt;stdio.h&gt;
 int main() {
     <span class="g">printf("Hello Sui");</span>
     return 0;
 }</pre></div>
         </div>
-        <canvas class="viz viz--sm" id="viz-lowlevel" aria-label="Raw memory blocks stacked by hand"></canvas>
+        <div class="layer-visual">
+          <canvas class="viz viz--xs" id="viz-lowlevel" aria-label="Raw memory blocks stacked by hand"></canvas>
+          <figure class="tradeoff">
+            <svg viewBox="0 0 320 104" role="img" aria-label="At this level both control and responsibility are near maximum: you decide everything, and everything is yours to get right.">
+              <text class="tf-cap" x="0" y="9">AT THIS LEVEL</text>
+              <text class="tf-lbl" x="0" y="42">CONTROL</text>
+              <rect class="tf-track" x="0" y="50" width="320" height="7" rx="3.5"/>
+              <rect class="tf-fill tf-fill--a" x="0" y="50" width="294" height="7" rx="3.5"/>
+              <text class="tf-lbl" x="0" y="82">RESPONSIBILITY</text>
+              <rect class="tf-track" x="0" y="90" width="320" height="7" rx="3.5"/>
+              <rect class="tf-fill tf-fill--b" x="0" y="90" width="294" height="7" rx="3.5"/>
+            </svg>
+            <figcaption data-i18n="evo.l2.tradeoff">You decide everything. Everything is yours to get right.</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -320,7 +333,7 @@ npm run agent
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="i18n.js?b=12"></script>
+<script src="i18n.js?b=13"></script>
 <script src="scene.js?b=4"></script>
 <script src="viz.js?b=4"></script>
 <script src="app.js?b=7"></script>

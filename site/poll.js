@@ -46,7 +46,7 @@
       hasError = hasError || !ok;
       var ready = totalValid && total > 0 && ok;
       var percent = ready ? counts[i] / total * 100 : 0;
-      document.getElementById('count-' + name).textContent = ready ? Number(percent.toFixed(1)) + '%' : '—';
+      document.getElementById('count-' + name).textContent = ready ? Number(percent.toFixed(1)) + '%' : '·';
       document.getElementById('bar-' + name).style.width = percent + '%';
     });
     document.getElementById('poll-empty').hidden = totalValid && total > 0;

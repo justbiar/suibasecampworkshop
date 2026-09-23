@@ -22,7 +22,7 @@
   function field(label, value) {
     const row = element('div', 'agent-field'); row.append(element('dt', '', label), element('dd', '', value || 'Not specified')); return row;
   }
-  // Small deterministic hash so the same agent always gets the same hue — a stable,
+  // Small deterministic hash so the same agent always gets the same hue. A stable,
   // distinct-looking pixel character per profile rather than a random one on every render.
   function hue(seed) {
     let h = 0;

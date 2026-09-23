@@ -94,7 +94,7 @@
     }
   });
 
-  /* wheel — one step per gesture */
+  /* wheel: one step per gesture */
   var wheelLock = false, wheelAccum = 0;
   document.getElementById("deck").addEventListener("wheel", function (e) {
     var d = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
@@ -151,7 +151,7 @@
     } catch (e) { qrEl.textContent = ""; }
   }
 
-  /* QR overlay — reachable from every slide via the QR button or the Q key */
+  /* QR overlay, reachable from every slide via the QR button or the Q key */
   var qrBigUrlEl = document.getElementById("qrBigUrl");
   if (qrBigUrlEl) qrBigUrlEl.textContent = url.replace(/^https?:\/\//, "");
   var qrBig = document.getElementById("qrBig");
