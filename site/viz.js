@@ -114,13 +114,16 @@
       var y = (i - 1.5) * 1.2;
       var t = i / 3;
       var geo = new THREE.BoxGeometry(3.6, 0.92, 0.05);
-      var fill = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.04 + t * 0.05 }));
+      // Transparent slabs must not write depth: as the group swings, a slab's near
+      // half would otherwise depth-cull the label sitting in front of it.
+      var fill = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.04 + t * 0.05, depthWrite: false }));
       fill.position.y = y;
       var edge = new THREE.LineSegments(new THREE.EdgesGeometry(geo),
-        new THREE.LineBasicMaterial({ color: i === 3 ? ACCENT : LINE, transparent: true, opacity: 0.3 + t * 0.5 }));
+        new THREE.LineBasicMaterial({ color: i === 3 ? ACCENT : LINE, transparent: true, opacity: 0.3 + t * 0.5, depthWrite: false }));
       edge.position.y = y;
       var lab = labelSprite(NAMES[i], { color: i >= 2 ? "#fff5e9" : "#d3c9bb", scale: 0.4 });
       lab.position.set(0, y, 0.2);
+      lab.renderOrder = 1;
       g.add(fill, edge, lab);
     }
 
@@ -172,7 +175,7 @@
       tilt.add(new THREE.Mesh(new THREE.SphereGeometry(0.14, 20, 20),
         new THREE.MeshBasicMaterial({ color: ACCENT })).translateX(x).translateY(y));
       tilt.add(new THREE.Mesh(new THREE.SphereGeometry(0.28, 18, 18),
-        new THREE.MeshBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.09 })).translateX(x).translateY(y));
+        new THREE.MeshBasicMaterial({ color: ACCENT, transparent: true, opacity: 0.09, depthWrite: false })).translateX(x).translateY(y));
       var lab = labelSprite(LAB[i], { color: "#fff5e9", scale: 0.4 });
       lab.position.set(x * 1.26, y * 1.26, 0.3);
       tilt.add(lab);
