@@ -277,6 +277,22 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.03em; line-height: 1.08; margi
 .term .g { color: var(--accent-2); }
 .term .m { color: var(--ink-3); }
 
+/* a file's contents, not a shell session — labelled tab instead of the terminal dots */
+.env-sample { border: 1px solid var(--line); border-radius: 12px; background: var(--bg-2); font-family: var(--mono); font-size: 13px; line-height: 1.75; color: var(--ink-2); margin-top: 16px; overflow: hidden; }
+.env-sample .env-file { display: block; padding: 9px 14px; border-bottom: 1px solid var(--line); color: var(--ink-3); font-size: 11px; letter-spacing: .04em; }
+.env-sample pre { margin: 0; padding: 14px 18px; overflow-x: auto; white-space: pre; }
+.env-sample .g { color: var(--accent-2); }
+
+/* the command and the file it opens, read left to right */
+.env-row { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 16px; align-items: start; }
+.env-row > * { margin-top: 16px; }
+@media (max-width: 760px) { .env-row { grid-template-columns: 1fr; gap: 0; } }
+
+/* a step-by-step slide carries more blocks than a statement slide; tighten the rhythm so it still fits one screen */
+.slide--dense h2 { margin-bottom: 14px; }
+.slide--dense .lesson-links { margin-top: 14px; }
+.slide--dense .term, .slide--dense .env-row > *, .slide--dense .lesson-note { margin-top: 12px; }
+
 /* wallet */
 .wallet { border: 1px solid var(--line-2); background: linear-gradient(180deg, var(--bg-3), var(--bg-2)); border-radius: 18px; padding: 24px; max-width: 420px; margin-bottom: 22px; }
 .wallet .top { display: flex; justify-content: space-between; align-items: center; font-family: var(--mono); font-size: 11px; color: var(--ink-3); letter-spacing: var(--label-ls); text-transform: uppercase; }
@@ -416,3 +432,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -0.03em; line-height: 1.08; margi
 .poll-mode { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--accent-3); font: 10px var(--mono); }
 .poll-mode:has([hidden]):not(:has(:not([hidden]))) { display: none; }
 .poll-mode .chip-btn { margin-top: 0; }
+.setup-help { margin-top: 14px; border: 1px solid var(--line-2); border-radius: 10px; background: var(--bg-2); padding: 12px 16px; font-size: 13px; color: var(--ink-2); }
+.setup-help summary { color: var(--accent); cursor: pointer; font-weight: 600; }
+.setup-help p { margin: 12px 0; }
+.setup-help .lesson-links { margin-top: 12px; }

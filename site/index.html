@@ -61,7 +61,7 @@
         <ol class="contents">
           <li><button type="button" data-goto="4"><span class="n">01</span><span data-i18n="contents.01">The evolution of software</span></button></li>
           <li><button type="button" data-goto="11"><span class="n">02</span><span data-i18n="contents.02">Building an agent</span></button></li>
-          <li><button type="button" data-goto="16"><span class="n">03</span><span data-i18n="workshop.part3">Identity &amp; memory on Sui</span></button></li>
+          <li><button type="button" data-goto="17"><span class="n">03</span><span data-i18n="workshop.part3">Identity &amp; memory on Sui</span></button></li>
         </ol>
       </div>
     </section>
@@ -226,7 +226,16 @@ node scripts/check-node.mjs &amp;&amp; ./setup.sh</pre></div><p class="lesson-no
 <div class="term"><pre>nvm install 22 &amp;&amp; nvm use 22 &amp;&amp; node -v
 node scripts/check-node.mjs &amp;&amp; ./setup.sh</pre></div>
 <p data-i18n="workshop.setup.shell">Run nvm use 22 again in each new terminal before npm commands. On Windows, use WSL for this Bash setup. Without nvm, install a current Node 22.x from the official downloads, reopen the terminal, and verify node -v before running setup.sh.</p>
-</details><p class="lesson-note" data-i18n="workshop.setup.env">Edit the generated .env locally: add your OPENROUTER_API_KEY. Leave the rest as generated — SUI_NETWORK=testnet and OPENROUTER_MODEL=openrouter/free work as they are.</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>npm run agent
+</details></div></section>
+
+<section class="slide slide--dense" aria-label="Add your key and run"><div class="slide-inner"><div class="kicker" data-i18n="workshop.setup.label">02 / SETUP</div><h2 class="" data-i18n="workshop.key.head">Add your key. Run the agent.</h2><p class="sub" data-i18n="workshop.setup.env">Create a key on OpenRouter, then open the generated .env and paste it after OPENROUTER_API_KEY=. Leave every other line as generated.</p>
+<div class="lesson-links"><a href="https://openrouter.ai/keys" target="_blank" rel="noopener noreferrer">Create an OpenRouter key ↗</a></div>
+<div class="env-row">
+<div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>nano .env</pre></div>
+<div class="env-sample"><span class="env-file">.env</span><pre><span class="g">OPENROUTER_API_KEY=sk-or-v1-paste-your-key-here</span>
+OPENROUTER_MODEL=openrouter/free</pre></div>
+</div>
+<p class="lesson-note" data-i18n="workshop.setup.envsave">Save and close: Ctrl+O, Enter, then Ctrl+X. The key stays on your machine — it is never committed or sent anywhere but OpenRouter.</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>npm run agent
 <span class="g">/doctor</span></pre></div><p class="lesson-note" data-i18n="workshop.setup.note">Local slash commands also work without an API key. Model availability depends on the provider.</p></div></section>
 
 <section class="slide " aria-label="Read verified tool results"><div class="slide-inner"><h2 class="" data-i18n="workshop.trace.head">Read the result. Know the source.</h2><p class="sub" data-i18n="workshop.trace.sub">Create a wallet, then read its balance. The CLI renders verified tool data rather than model-written balances.</p><div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>/wallet create
@@ -311,7 +320,7 @@ npm run agent
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-<script src="i18n.js?b=9"></script>
+<script src="i18n.js?b=11"></script>
 <script src="scene.js?b=4"></script>
 <script src="viz.js?b=4"></script>
 <script src="app.js?b=7"></script>
