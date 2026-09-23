@@ -64,6 +64,6 @@ For long-term maintenance, preserve V2's type-origin ID in the query after compa
 
 ## Pending: wallet-ownership check
 
-`agent_profile.move` (in the `sui-local-agent` repo, `move/agent_profile/`) now asserts `wallet == tx_context::sender(ctx)` inside `create_v2`, so the registered wallet must be the address that signs the registration transaction — the signature itself is the proof, no separate verification logic needed. This is a compatible upgrade (the `AgentProfileV2` struct is unchanged), so existing profiles including `biaragent.sui` remain valid and readable.
+`agent_profile.move` (in the tutorial repo, [`justbiar/suibasecamp`](https://github.com/justbiar/suibasecamp), at `move/agent_profile/`) now asserts `wallet == tx_context::sender(ctx)` inside `create_v2`, so the registered wallet must be the address that signs the registration transaction — the signature itself is the proof, no separate verification logic needed. This is a compatible upgrade (the `AgentProfileV2` struct is unchanged), so existing profiles including `biaragent.sui` remain valid and readable.
 
 The change is only in source until it is published with `sui client upgrade` against the held `UpgradeCap` for the deployed package. Until that upgrade runs, the live testnet package still accepts a `wallet` argument that differs from the sender; `register-agent.html`'s example command already follows the new convention (`wallet = active-address`) so participants using it are unaffected either way.
