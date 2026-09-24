@@ -7,44 +7,25 @@
 <main class="directory-main registration"><div class="hero-art hero-art--reg" aria-hidden="true"></div><span class="network-label">SUI TESTNET / REGISTRATION</span><h1>Your agent belongs here.</h1><p>The directory reads every current AgentProfileV2 object in the shared workshop package. Once your registration is indexed, it appears automatically.</p>
 <div class="pipe reg-pipe" aria-hidden="true"><span><span class="i">01</span>fund a wallet</span><span><span class="i">02</span>run one call</span><span class="sign"><span class="i">03</span>refresh &amp; find it</span></div>
 
-<div class="layer-mark"><span class="lm-n">01</span><span class="lm-tag">Prepare</span></div><h2>Prepare your agent</h2>
+<div class="layer-mark"><span class="lm-n">01</span><span class="lm-tag">Prepare</span></div><h2>Get your agent working first</h2>
 <ul class="step-points">
-  <li>Follow the <a href="https://github.com/justbiar/suibasecamp" target="_blank" rel="noopener noreferrer">agent tutorial</a> to create your local wallet and configure OpenRouter, SuiNS and Walrus Memory. Registration below is a separate Sui CLI step.</li>
-  <li>Use a testnet Sui CLI signer that you control and fund it for registration gas. The tutorial wallet is stored separately in .data/agent-wallet.json; it is not automatically your CLI signer.</li>
-  <li>The command below registers whichever wallet the CLI is signing with. To register your tutorial wallet, import its key into the CLI and switch to it, then confirm the active address matches the one the agent reports for <code>/identity</code>. Use a SuiNS name that targets that address, and your configured memory namespace.</li>
-</ul>
-<div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>cd suibasecamp
-<span class="m"># read the agent's key out of its wallet file and import it</span>
-sui keytool import "$(node -p "require('./.data/agent-wallet.json').secretKey")" ed25519
-sui client switch --address "$(node -p "require('./.data/agent-wallet.json').address")"
-sui client active-address  <span class="m"># must match the agent's /identity address</span></pre></div>
-<ul class="step-points">
-  <li>The key reaches the CLI as a command argument, so it is briefly visible to other processes on the machine. That is acceptable for a testnet workshop wallet and nothing else.</li>
-  <li>Already signing with the agent's wallet? Skip the import; <code>sui client active-address</code> is the only check that matters.</li>
+  <li>Finish the <a href="https://github.com/justbiar/suibasecamp" target="_blank" rel="noopener noreferrer">agent tutorial</a>: a wallet, a SuiNS name pointing at it, and memory configured.</li>
+  <li>Check it with <code>/identity</code> in the agent. It must print your SuiNS name. Registration reads that same name, so if it is missing here it will be missing in the directory.</li>
+  <li>Your wallet needs a little testnet SUI for gas. <code>/balance</code> shows it.</li>
 </ul>
 
-<div class="layer-mark"><span class="lm-n">02</span><span class="lm-tag">Register</span></div><h2>Register with the common package</h2>
+<div class="layer-mark"><span class="lm-n">02</span><span class="lm-tag">Register</span></div><h2>One command</h2>
 <ul class="step-points">
-  <li>The wallet you register must be your active signer. The module checks it against the transaction sender.</li>
-  <li>Swap in your own metadata below. Keep the package ID unchanged.</li>
-  <li>Spends real testnet gas. Only declare capabilities your agent actually implements.</li>
+  <li>Run this in the tutorial folder. It reads your wallet, SuiNS name, namespace and capabilities from your own setup, so there is nothing to fill in.</li>
 </ul>
-<pre><code>sui client switch --env testnet
-AGENT_WALLET=$(sui client active-address)
-sui client call \
-  --package 0x73795ef21ec3554a141ddcf8d8b6696245762c8a071eeec4bbda2b0818f694c7 \
-  --module agent_profile \
-  --function create_v2 \
-  --args "$AGENT_WALLET" \
-    'myagent.sui' 'myagent' 'local://sui-local-agent' '2.0.0' \
-    '["create_wallet","get_balance","resolve_suins","get_agent_suins_identity","remember","recall"]' \
-  --gas-budget 10000000 \
-  --json</code></pre>
+<div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>npm run register</pre></div>
 <ul class="step-points">
-  <li>Add <code>--dry-run</code> to the same command first. It simulates the call for free and prints the AgentProfileV2 it would create, so a wrong signer or a typo costs nothing. Drop the flag to register for real.</li>
-  <li>A wallet/signer mismatch aborts registration. Failed transactions may still consume testnet gas.</li>
-  <li>Save the created AgentProfileV2 object ID.</li>
-  <li>Don't re-run this just because the page hasn't refreshed. That creates a duplicate profile.</li>
+  <li>That only simulates: it prints exactly what would be registered and sends nothing. Read it, then commit:</li>
+</ul>
+<div class="term"><div class="bar"><i></i><i></i><i></i></div><pre>npm run register -- <span class="g">--yes</span></pre></div>
+<ul class="step-points">
+  <li>Spends a little testnet gas. It stops rather than creating a second entry if your wallet already has one.</li>
+  <li>Prefer the raw Sui CLI call? It is in the <a href="https://github.com/justbiar/suibasecamp/blob/main/scripts/register-agent.mjs" target="_blank" rel="noopener noreferrer">script</a>; add <code>--dry-run</code> before spending anything.</li>
 </ul>
 
 <div class="layer-mark"><span class="lm-n">03</span><span class="lm-tag">Confirm</span></div><h2>Find your agent</h2>
