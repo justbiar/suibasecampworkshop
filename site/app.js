@@ -139,7 +139,7 @@
   /* self-referential QR */
   var qrEl = document.getElementById("qr");
   var qrUrlEl = document.getElementById("qrUrl");
-  var url = "https://suibasecampworkshop.pages.dev/?join=basecamp-2026";
+  var url = "https://suibasecampworkshop.pages.dev/links?join=basecamp-2026";
   if (qrUrlEl) qrUrlEl.textContent = url.replace(/^https?:\/\//, "");
   if (qrEl && typeof window.QRCode === "function") {
     try {
