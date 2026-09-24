@@ -41,6 +41,7 @@ sui client call \
   --gas-budget 10000000 \
   --json</code></pre>
 <ul class="step-points">
+  <li>Add <code>--dry-run</code> to the same command first. It simulates the call for free and prints the AgentProfileV2 it would create, so a wrong signer or a typo costs nothing. Drop the flag to register for real.</li>
   <li>A wallet/signer mismatch aborts registration. Failed transactions may still consume testnet gas.</li>
   <li>Save the created AgentProfileV2 object ID.</li>
   <li>Don't re-run this just because the page hasn't refreshed. That creates a duplicate profile.</li>
